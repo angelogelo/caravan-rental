@@ -66,7 +66,7 @@
                                     <td><?= $status; ?></td>
                                     <td>
                                         <?php
-                                            if($booking_row['mode_of_payment'] == 'Gcash' AND $payment_row['status'] == 0){
+                                            if($booking_row['mode_of_payment'] == 'GCash' AND $payment_row['status'] == 0){
                                         ?>
                                             <button class="btn btn-primary btn-xs" title="View Proof of Payment" data-toggle="modal" data-target="#confirmation-modal"><i class="fas fa-eye"></i></button>
 

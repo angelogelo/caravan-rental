@@ -252,6 +252,15 @@
             </li>
 
             <li class="nav-item">
+              <a href="messages.php" class="nav-link <?php if($page == 'message') { echo ' active'; } ?>" style="color: black;">
+                <i class="nav-icon fas fa-comment"></i>
+                <p>
+                  Message
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
               <a href="https://www.sinotrack.com/" class="nav-link" style="color: black;" target="_blank">
                 <i class="nav-icon fas fa-location-arrow"></i>
                 <p>

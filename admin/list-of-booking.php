@@ -73,7 +73,7 @@
 
                                             <button class="btn btn-primary btn-xs view-booking" data-tooltip="tooltip" title="Click to View" data-id="<?php echo $rent_row['id']; ?>"><i class="fas fa-eye"></i></button>
                                             
-                                            <?php if($rent_row['mode_of_payment'] == 'Cash On Pickup') || { ?>
+                                            <?php if($rent_row['mode_of_payment'] == 'Cash On Pickup') { ?>
                                                 <!--Show-->
                                                 <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#payment-modal"><i class="fas fa-cash-register"></i></button>
                                                 

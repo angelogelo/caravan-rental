@@ -273,17 +273,12 @@
               icon: "warning"
             });
           }else {
-            if (data == "parent") {
+            if (data == "customer") {
               swal({
-
                  type: 'success',
-                 title: "Welcome Parent!",
-                 imageSize: '600x600',
-                 icon: "images/spedLogo.png"
-
-
+                 title: "Welcome Customer!"
                }).then(function(){
-                 window.location.href = 'parents/';
+                 window.location.href = 'customer.php';
                });
             }else {
 

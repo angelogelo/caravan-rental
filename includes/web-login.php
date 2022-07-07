@@ -15,30 +15,12 @@
 		$type = $selectRow['type'];
 
 		if (password_verify($password, $passwordCheck)) {
-			if ($type == "parent") {
-				$_SESSION['parent'] = $username;
-				$_SESSION['last_time'] = time();
+			if ($type == "customer") {
 
-				$parent = $connection->query("SELECT * FROM parents WHERE parent_id='$username'");
-				$parentRow = $parent->fetch_array();
+				$_SESSION['customer'] = $username;
 
-				$time=time()+10;
-
-				if ($parentRow['status'] == "pending" OR $parentRow['status'] == "deactivated") {
-					echo "Pending";
-					exit();
-				}
-
-			}else if ($type == "teacher") {
-				$_SESSION['teacher'] = $username;
-
-				$teacher = $connection->query("SELECT * FROM teacher WHERE teacher_id='$username'");
-				$teacherRow = $teacher->fetch_array();
-
-				if ($teacherRow['status'] == "deactivated") {
-					echo "Deactivated";
-					exit();
-				}
+				$customer = $connection->query("SELECT * FROM user WHERE username='$username'");
+				$customerRow = $customer->fetch_array();
 
 			}else {
 				$_SESSION['admin'] = $username;
