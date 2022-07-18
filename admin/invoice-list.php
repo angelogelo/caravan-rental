@@ -22,11 +22,12 @@
     <div class="container-fluid">
         <div class="row">
             
-            <div class="col-lg-12">
+            <div class="col-lg-8">
                 <div class="card card-outline card-warning">
                     <div class="card-body">
                         <table id="invoiceListTables" class="table table-condensed table-hover table-sm text-sm">
                             <thead>
+                                <th class="display">#</th>
                                 <th>Invoice Number</th>
                                 <th>Actions</th>
                             </thead>
@@ -37,6 +38,7 @@
                                     while($invoice_row = $invoice->fetch_array()){
                                 ?>
                                 <tr>
+                                    <td class="display"><?= $invoice_row['id'];?></td>
                                     <td><?= $invoice_row['invoice_number'];?></td>
                                     <td>
                                         <button type="button" class="btn btn-primary btn-xs print-invoice" data-id="<?php echo $invoice_row['invoice_number']; ?>"><i class="fas fa-print"></i></button>
@@ -69,6 +71,7 @@
             "autoWidth": false,
             "responsive": true,
             iDisplayLength: 25,
+            "order":[0,'desc']
         });
 
         $(document).on('click', '.print-invoice', function(){

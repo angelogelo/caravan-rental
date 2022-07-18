@@ -29,7 +29,6 @@
                             <table id="bookingTable" class="table table-hover table-striped table-sm text-sm">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
                                         <th class="table-plus datatable-nosort" >Booking #</th>
                                         <th>Customer Name</th>
                                         <th>Vehicle</th>
@@ -61,11 +60,8 @@
                                             }else {
                                                 $status = '<span class="badge badge-danger">Cancelled</span>';
                                             }
-
-                                            $payment = $connection->query("SELECT * FROM tbl_payment WHERE booking_id = '".$rent_row['id']."'");
                                     ?>
                                     <tr>
-                                        <td><?= $rent_row['id']; ?></td>
                                         <td><?= $rent_row['booking_number']; ?></td>
                                         <td><?= ucwords($customer_row['firstname'].' '.$customer_row['lastname']); ?></td>
                                         <td><?= $vehicle_row['vehicle_name']; ?></td>
@@ -74,17 +70,22 @@
                                         <td><?= $rent_row['mode_of_payment']; ?></td>
                                         <td><?= $status; ?></td>
                                         <td>
-                                           
-                                            <?php if($rent_row['rent_status'] == 0 AND $rent_row['mode_of_payment'] == 'GCash') {?>
+                                            <?php if($rent_row['rent_status'] == 1){ ?>
+                                                
+                                            <?php }else if ($rent_row['rent_status'] == 2){ ?>
+                                                
+                                            <?php } else {?>
                                                 <button class="btn btn-primary btn-xs view-booking" data-tooltip="tooltip" title="Click to View" data-id="<?php echo $rent_row['id']; ?>"><i class="fas fa-eye"></i></button>
                                             <?php } ?>
-
-                                            <?php if($rent_row['rent_status'] == 0 AND $rent_row['mode_of_payment'] == 'Cash On Pickup'){?>
-                                                <button class="btn btn-primary btn-xs view-booking" data-tooltip="tooltip" title="Click to View" data-id="<?php echo $rent_row['id']; ?>"><i class="fas fa-eye"></i></button>
+                                            
+                                            <?php if($rent_row['mode_of_payment'] == 'Cash On Pickup' AND $rent_row['rent_status'] == 1)  { ?>
                                                 
-                                                <?php if($payment->num_rows < 1){ ?>
-                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#payment-modal"><i class="fas fa-cash-register"></i></button>
-                                                <?php } ?>
+                                                <?php } else if ($rent_row['rent_status'] == 2) { ?>
+                                                
+                                                <?php } else if ($rent_row['rent_status'] == 2){ ?>
+                                                <!--Show-->
+                                                <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#payment-modal"><i class="fas fa-cash-register"></i></button>
+                                                
                                                 <div class="modal fade" id="payment-modal">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
@@ -100,7 +101,7 @@
                                                                     <div class="row">
                                                                         <div class="col-lg-12">
                                                                             <div class="form-group">
-                                                                                <h3>Ammount to Pay: ₱ <?= $rent_row['total_amount']; ?></h3>
+                                                                                <label class="float-left">Amount to pay: <?= $rent_row['total_amount']; ?></label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -127,6 +128,7 @@
                                                     </div><!-- /.modal-dialog -->
                                                 </div><!-- /.modal -->
                                             <?php } ?>
+
                                         </td>
                                     </tr>
                                     <?php } ?>
@@ -156,7 +158,6 @@
             "autoWidth": false,
             "responsive": true,
             iDisplayLength: 25,
-            "order":[0,'desc']
         });
 
         $(document).on('click', '.view-booking', function(){
@@ -185,11 +186,6 @@
                     }else if (data === "Error") {
                         swal({
                             title: "Already Pay!",
-                            icon: "info"
-                        });
-                    }else if (data === "Not Same") {
-                        swal({
-                            title: "Please input exact ammount!",
                             icon: "info"
                         });
                     }else {

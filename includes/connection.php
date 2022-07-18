@@ -8,9 +8,9 @@
 	$database = "caravan-rental";
 
     // $host = "localhost";
-	// $username = "id18669700_rental_cars";
- 	// $password = "N@<3+cD2>lhj=uKW";
-	// $database = "id18669700_rental";
+	// $username = "u315516982_caravan_rental";
+ 	// $password = "Vt9:iESO|sf";
+	// $database = "u315516982_caravan_rental";
 
 	$connection = new mysqli($host, $username, $password, $database);
 	

@@ -11,13 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] =='POST'){
     $passwordd = $_POST['password'];
     $type = $_POST['type'];
    
-
-
     $passwords = password_hash($passwordd, PASSWORD_DEFAULT);
 
     include 'connection.php';
     
-    $dbc = mysqli_connect('localhost', 'id18669700_rental_cars', 'N@<3+cD2>lhj=uKW', 'id18669700_rental') or die('Error connecting to MySQL server');
+    $dbc = mysqli_connect('localhost', 'u315516982_caravan_rental', 'Vt9:iESO|sf', 'u315516982_caravan_rental') or die('Error connecting to MySQL server');
     $check=mysqli_query($dbc,"select * from user where email='$email' or contact_no='$contact_no'");
     $checkrows=mysqli_num_rows($check);
     

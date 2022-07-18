@@ -170,7 +170,7 @@
                                                     }else if ($payment_row['status'] == 2){
                                                         $payment_status = '<span class="badge badge-secondary">Refund</span>';
                                                     }else {
-                                                        $payment_status = '<span class="badge badge-danger">Declined</span>';
+                                                        $payment_status = '<span class="badge badge-danger">Cancelled</span>';
                                                     }
                                                 ?>
 
@@ -228,7 +228,7 @@
                         
                         <div class="text-center">
                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#declineBooking<?php echo $booking_row['id']; ?>">
-                                Declined Booking
+                                Cancelled Booking
                             </button>
 
                             <div class="modal fade" id="declineBooking<?php echo $booking_row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -240,7 +240,7 @@
                                             <div class="modal-body">
                                                 <div class="form-group row">
                                                     <div class="col-md-12">
-                                                        <p class="h6">Are you sure you want to declined this booking?</p>
+                                                        <p class="h6">Are you sure you want to cancelled this booking?</p>
                                                     </div>
                                                 </div>
 
@@ -252,7 +252,7 @@
                                                 </div>	
                                                 <input type="hidden" name="update_id" id="update_id" value="<?php echo $booking_row['id']; ?>">
                                                 <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" style="margin-right: 10px;">Cancel</button>
-                                                <button type="submit" class="btn btn-danger btn-sm">Declined</button>
+                                                <button type="submit" class="btn btn-danger btn-sm">Cancelled</button>
                                             </div><!-- /.modal-body -->
                                         </form><!-- /.form -->
 

@@ -170,7 +170,7 @@
 
   function status_update(value, id){
       //alert(id);
-      let url = "http://127.0.0.1/caravan-rental/admin/driver-edit.php";
+      let url = "http://caravan-rental-cars.online/admin/driver-edit.php";
       window.location.href= url+"?id="+id+"&status="+value;  
       //alert(url);
   }

@@ -51,7 +51,7 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <span><b>Contact No.</b></span>
-                                        <input type="number" name="contact_no" class="form-control form-control-sm" placeholder="Enter Contact No" required>
+                                        <input type="text" pattern="\d*" name="contact_no" class="form-control form-control-sm" placeholder="Enter Contact No" maxlength="11" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">

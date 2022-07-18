@@ -26,6 +26,7 @@
                     <div class="card-body">
                         <table id="paymentTables" class="table table-condensed table-hover table-sm text-sm">
                             <thead>
+                                <th>#</th>
                                 <th>Transcation #</th>
                                 <th>Booking #</th>
                                 <th>Customer Name</th>
@@ -57,6 +58,7 @@
                                         }
                                 ?>
                                 <tr>
+                                    <td><?= $payment_row['id']; ?></td>
                                     <td><?= $payment_row['transaction_no']; ?></td>
                                     <td><?= $booking_row['booking_number']; ?></td>
                                     <td><?= ucwords($customer_row['firstname'].' '.$customer_row['lastname']); ?></td>
@@ -148,6 +150,7 @@
             "autoWidth": false,
             "responsive": true,
             iDisplayLength: 25,
+            "order":[0,'desc']
         });
 
         $(document).on('click', '.print-invoice', function(){

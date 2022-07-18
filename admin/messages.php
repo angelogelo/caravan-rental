@@ -95,9 +95,10 @@
                                     <div class="card shadow">
                                         <form action="" method="POST" id="chatForm">
                                             <div class="card-header">
-                                                <div class="row col-md-12 d-flex justify-content-end">
-                                                    <span id="activeName"><?php echo $activeName; ?></span>
-                                                </div>
+                                                <h3 class="card-title"><?php echo ucwords($activeName); ?></h3>
+                                                <!--<div class="row col-md-12 d-flex justify-content-end">-->
+                                                <!--    <span id="activeName"></span>-->
+                                                <!--</div>-->
                                             </div>
                                             <div class="card-body">
                                                 <div class="container">

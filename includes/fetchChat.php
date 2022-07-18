@@ -12,6 +12,8 @@
 		$receiver = mysqli_real_escape_string($connection, $_POST['receiver']);
 		$chats = $connection->query("SELECT * FROM chats WHERE sender='$receiver' OR receiver='$receiver' ORDER BY created_at ASC");
 
+		
+
 	}
 
 	if ($chats->num_rows < 1) {
@@ -25,17 +27,23 @@
 
 	}else {
 		while ($chatsRow = $chats->fetch_array()) {
+
+			
+		    
 			if ($chatsRow['sender'] == $sender) {
 				$position = "ml-auto";
 				$textAlign = "text-right";
-				$bgColor = "col-md-6 bg-warning text-white rounded border py-1";
-				$from = "You";
+				$bgColor = "col-md-6 bg-primary text-white rounded border py-1";
+				//$from = "Administrator";
 				$time = date("h:ia", strtotime($chatsRow['created_at']))." | ".date("M d, Y", strtotime($chatsRow['created_at']));
 			}else {
+				// $chat_from = $connection->query("SELECT * FROM user WHERE id = '".$receiver."'");
+				// $chatRow = $chat_from->fetch_array();
 				$position = "mr-auto";
 				$textAlign = "text-left";
 				$bgColor = "col-md-6 bg-light text-dark rounded border py-1";
-				$from = $chatsRow['sender'];
+				//$from = $chatsRow['sender'];
+				//$from = $chatRow['firstname'].' '.$chatRow['lastname'];
 				$time = date("h:ia", strtotime($chatsRow['created_at']))." | ".date("M d, Y", strtotime($chatsRow['created_at']));
 			}
 			?>
@@ -43,7 +51,7 @@
 					<div class="col-md-6 <?php echo $position; ?>">
 						<div class="form-group row">
 							<div class="col-md-12 <?php echo $textAlign; ?>">
-								<p class="h6"><?php echo $from; ?></p>
+								<p class="h6"><?php //echo $from; ?></p>
 							</div>
 							<div class="col-md-12 <?php echo $bgColor; ?> <?php echo $textAlign; ?>">
 								<p class="h6"><?php echo $chatsRow['message']; ?></p>

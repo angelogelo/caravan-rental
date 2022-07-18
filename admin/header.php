@@ -215,8 +215,8 @@
               }
             ?>
 
-            <li class="nav-item has-treeview <?php echo $tree_open; ?>">
-                <a href="#" class="nav-link <?php if($page == 'list-of-booking') { echo $tree_active; } else { echo $tree_active; } ?>" style="color: black;">
+            <!-- <li class="nav-item has-treeview <?php //echo $tree_open; ?>">
+                <a href="#" class="nav-link <?php //if($page == 'list-of-booking') { echo $tree_active; } else { echo $tree_active; } ?>" style="color: black;">
                     <i class="nav-icon fas fa-road"></i>
                     <p>
                         Booking Management
@@ -224,13 +224,15 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="list-of-booking.php" class="nav-link <?php if($page == 'list-of-booking') { echo ' active'; } ?>" style="color: black;">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>List of Bookings</p>
-                        </a>
-                    </li>
+                    
                 </ul>
+            </li> -->
+
+            <li class="nav-item">
+                <a href="list-of-booking.php" class="nav-link <?php if($page == 'list-of-booking') { echo ' active'; } ?>" style="color: black;">
+                <i class="nav-icon fas fa-road"></i>
+                    <p>Booking List</p>
+                </a>
             </li>
 
             <li class="nav-item">

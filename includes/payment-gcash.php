@@ -1,6 +1,6 @@
 <?php
-$conn=mysqli_connect("localhost","id18669700_rental_cars","N@<3+cD2>lhj=uKW");
-mysqli_select_db($conn,"id18669700_rental");
+$conn=mysqli_connect("localhost","u315516982_caravan_rental","Vt9:iESO|sf");
+mysqli_select_db($conn,"u315516982_caravan_rental");
 
 $picture_tmp = $_FILES['proof_of_payment']['tmp_name'];
 $picture_name = $_FILES['proof_of_payment']['name'];

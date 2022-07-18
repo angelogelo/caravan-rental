@@ -46,6 +46,11 @@
        .disclaimer{
            display: none;
        }
+       @media print {
+        #printPageButton {
+            display: none;
+        }
+        }
    </style>
 </head>
 <body>
@@ -198,6 +203,17 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+
+                                <div class="float-right">
+                                    <button class="btn btn-primary btn-sm" id="printPageButton" onclick="window.print()">Print Invoice</button>
+                                    <button class="btn btn-success btn-sm" id="printPageButton">Send Email</button>
+                                </div>
+
+                            </div>
+                        </div>
                 
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
@@ -209,7 +225,7 @@
 
 <!-- Page specific script -->
 <script>
-  window.addEventListener("load", window.print());
+  //window.addEventListener("load", window.print());
 </script>
 </body>
 </html>

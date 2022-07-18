@@ -15,7 +15,8 @@
     $plate_number = $_POST['plate_number'];
     $vehicle_color = $_POST['vehicle_color'];
     $registration_expiry = $_POST['registration_expiry'];
-    $price = $_POST['price'];
+    $regular_package = $_POST['regular_package'];
+    $complete_package = $_POST['complete_package'];
 
     if($picture_tmp !== ""){
         if (move_uploaded_file($picture_tmp, '../vehicles-photo/'.$picture)) {
@@ -29,7 +30,8 @@
                 plate_number = '$plate_number',
                 vehicle_color = '$vehicle_color',
                 registration_expiry = '$registration_expiry',
-                price = '$price'
+                regular_package = '$regular_package',
+                complete_package = '$complete_package'
             WHERE id = '$vehicle_id';
             ");
             if($update === TRUE){
@@ -48,7 +50,8 @@
             plate_number = '$plate_number',
             vehicle_color = '$vehicle_color',
             registration_expiry = '$registration_expiry',
-            price = '$price'
+            regular_package = '$regular_package',
+            complete_package = '$complete_package'
         WHERE id = '$vehicle_id';
         ");
         if($update === TRUE){
