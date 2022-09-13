@@ -25,6 +25,8 @@
     $regular = $_POST['regular_package'];
     $complete = $_POST['complete_package'];
 
+    $vehicle_category = $_POST['vehicle_category'];
+
     if (move_uploaded_file($singel_tmp, '../vehicles-photo/'.$picture)) {
 
         // $insert = $connection->query("INSERT INTO tbl_vehicle (
@@ -34,6 +36,7 @@
         // )");
 
         $insert = $connection->query("INSERT INTO tbl_vehicle (
+            vehicle_category,
             vehicle_photo,
             vehicle_transmission, 
             vehicle_name, 
@@ -46,6 +49,7 @@
             regular_package,
             complete_package
         ) VALUES (
+            '$vehicle_category',
             '$picture',
             '$vehicle_transmission',
             '$vehicle_name',

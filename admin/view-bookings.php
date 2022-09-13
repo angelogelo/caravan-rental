@@ -228,7 +228,7 @@
                         
                         <div class="text-center">
                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#declineBooking<?php echo $booking_row['id']; ?>">
-                                Cancelled Booking
+                                Cancel Booking
                             </button>
 
                             <div class="modal fade" id="declineBooking<?php echo $booking_row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -252,7 +252,7 @@
                                                 </div>	
                                                 <input type="hidden" name="update_id" id="update_id" value="<?php echo $booking_row['id']; ?>">
                                                 <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" style="margin-right: 10px;">Cancel</button>
-                                                <button type="submit" class="btn btn-danger btn-sm">Cancelled</button>
+                                                <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
                                             </div><!-- /.modal-body -->
                                         </form><!-- /.form -->
 

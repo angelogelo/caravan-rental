@@ -51,7 +51,7 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <span><b>Contact No.</b></span>
-                                        <input type="text" pattern="\d*" name="contact_no" class="form-control form-control-sm" placeholder="Enter Contact No" maxlength="11" required>
+                                        <input type="number" name="contact_no" class="form-control form-control-sm" placeholder="Enter Contact No" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <span><b>Total Experience</b></span>
+                                        <span><b>Years of Experience</b></span>
                                         <input type="number" name="total_exp" class="form-control form-control-sm" placeholder="Enter Total Experience" required>
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <span><b>License Restriction</b></span>
+                                        <span><b>Restriction Code</b></span>
                                         <input type="text" name="license_restriction" class="form-control form-control-sm" placeholder="Enter License Resctriction" required>
                                     </div>
                                 </div>

@@ -1,17 +1,17 @@
 <?php
 
 function sendMail($to, $name, $subject, $body) {
-	require '../vendor/autoload.php';
-	require_once '../vendor/swiftmailer/swiftmailer/lib/swift_required.php';
+	require '../assets/vendor/autoload.php';
+	require_once '../assets/vendor/swiftmailer/swiftmailer/lib/swift_required.php';
 	
 	$transport = (new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
-		->setUsername('angelo.nyelo@gmail.com')
-		->setPassword('angelonyelo082596');
+		->setUsername('caravanrental0001@gmail.com')
+		->setPassword('dlvlyqstpshjhxiw');
 
 	$mailer = new Swift_Mailer($transport);
 
 	$message = (new Swift_Message($subject))
-		->setFrom(['dev.angelogelo@gmail.com' => 'NFA!'])
+		->setFrom(['caravanrental0001@gmail.com' => 'Caravan Rental!'])
 		->setTo([$to => $name])
 		->addPart($body, 'text/html');
 

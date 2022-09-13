@@ -12,6 +12,8 @@
     echo '<script>window.location.href="../index.php";</script>';
 
   }
+  
+  $getDate = date('Y-m-d');
 ?>
 
 <!DOCTYPE html>
@@ -150,7 +152,7 @@
                     <li class="nav-item">
                         <a href="vehicle-list.php" class="nav-link <?php if($page == 'vehicle-list') { echo ' active'; } ?>" style="color: black;">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Vehicle List</p>
+                            <p>List of Vehicle</p>
                         </a>
                     </li>
                 </ul>
@@ -158,7 +160,7 @@
                     <li class="nav-item">
                         <a href="vehicle-add.php" class="nav-link <?php if($page == 'vehicle-add') { echo ' active'; } ?>" style="color: black;">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Vehicle Add</p>
+                            <p>Add Vehicle</p>
                         </a>
                     </li>
                 </ul>
@@ -190,7 +192,7 @@
                     <li class="nav-item">
                         <a href="driver-list.php" class="nav-link <?php if($page == 'driver-list') { echo ' active'; } ?>" style="color: black;">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Driver List</p>
+                            <p>List of Driver</p>
                         </a>
                     </li>
                 </ul>
@@ -198,7 +200,7 @@
                     <li class="nav-item">
                         <a href="driver-add.php" class="nav-link <?php if($page == 'driver-add') { echo ' active'; } ?>" style="color: black;">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Driver Add</p>
+                            <p>Add Driver</p>
                         </a>
                     </li>
                 </ul>
@@ -215,8 +217,8 @@
               }
             ?>
 
-            <!-- <li class="nav-item has-treeview <?php //echo $tree_open; ?>">
-                <a href="#" class="nav-link <?php //if($page == 'list-of-booking') { echo $tree_active; } else { echo $tree_active; } ?>" style="color: black;">
+            <li class="nav-item has-treeview <?php echo $tree_open; ?>">
+                <a href="#" class="nav-link <?php if($page == 'list-of-booking') { echo $tree_active; } else { echo $tree_active; } ?>" style="color: black;">
                     <i class="nav-icon fas fa-road"></i>
                     <p>
                         Booking Management
@@ -224,15 +226,13 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    
+                    <li class="nav-item">
+                        <a href="list-of-booking.php" class="nav-link <?php if($page == 'list-of-booking') { echo ' active'; } ?>" style="color: black;">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>List of Bookings</p>
+                        </a>
+                    </li>
                 </ul>
-            </li> -->
-
-            <li class="nav-item">
-                <a href="list-of-booking.php" class="nav-link <?php if($page == 'list-of-booking') { echo ' active'; } ?>" style="color: black;">
-                <i class="nav-icon fas fa-road"></i>
-                    <p>Booking List</p>
-                </a>
             </li>
 
             <li class="nav-item">
@@ -267,6 +267,15 @@
                 <i class="nav-icon fas fa-location-arrow"></i>
                 <p>
                   GPS Tracker
+                </p>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a href="reports.php" class="nav-link <?php if($page == 'reports') { echo ' active'; } ?>" style="color: black;">
+                <i class="nav-icon fas fa-cogs"></i>
+                <p>
+                  Reports
                 </p>
               </a>
             </li>

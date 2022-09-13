@@ -3,6 +3,12 @@
     include 'header.php';
 ?>
 
+<style>
+    .no-display{
+        display: none;
+    }
+</style>
+
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -26,7 +32,7 @@
                     <div class="card-body">
                         <table id="paymentTables" class="table table-condensed table-hover table-sm text-sm">
                             <thead>
-                                <th>#</th>
+                                <th class="no-display">#</th>
                                 <th>Transcation #</th>
                                 <th>Booking #</th>
                                 <th>Customer Name</th>
@@ -38,7 +44,7 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    $payment = $connection->query("SELECT * FROM tbl_payment");
+                                    $payment = $connection->query("SELECT * FROM tbl_payment ORDER BY id ASC");
                                     while($payment_row = $payment->fetch_array()){
 
                                         $booking = $connection->query("SELECT * FROM tbl_rents WHERE id = '".$payment_row['booking_id']."'");
@@ -58,7 +64,7 @@
                                         }
                                 ?>
                                 <tr>
-                                    <td><?= $payment_row['id']; ?></td>
+                                    <td class="no-display"><?= $payment_row['id']; ?></td>
                                     <td><?= $payment_row['transaction_no']; ?></td>
                                     <td><?= $booking_row['booking_number']; ?></td>
                                     <td><?= ucwords($customer_row['firstname'].' '.$customer_row['lastname']); ?></td>
@@ -99,6 +105,24 @@
                                                                                 <td><?= $payment_row['amount']; ?></td>
                                                                             </tr>
                                                                             <tr>
+                                                                                <th>Total Amount</th>
+                                                                                <td><?= $booking_row['total_amount']; ?></td>
+                                                                            </tr>
+                                                                            
+                                                                            <tr>
+                                                                                <th>Balance</th>
+                                                                                <td>
+                                                                                    
+                                                                                    <?php
+                                                                                       $balance = $booking_row['total_amount'] - $payment_row['amount']; 
+                                                                                    ?>
+                                                                                    
+                                                                                    <?= $balance; ?>
+                                                                                    
+                                                                                </td>
+                                                                            </tr>
+                                                                            
+                                                                            <tr>
                                                                                 <th>Payment Type</th>
                                                                                 <td><?= $payment_row['payment_type']; ?></td>
                                                                             </tr>
@@ -106,6 +130,9 @@
                                                                     </div>
                                                                 </div>
                                                                 
+                                                                
+                                                                <input type="hidden" value="<?= $payment_row['payment_type']; ?>" name="payment_type">
+                                                                <input type="hidden" value="<?= $balance; ?>" name="balance">
                                                                 <input type="hidden" value="<?= $payment_row['booking_id']; ?>" name="booking_id">
                                                                 <input type="hidden" value="<?= $payment_row['transaction_no']; ?>" name="transaction_no">
                                                                 <input type="hidden" value="<?= $payment_row['id']; ?>" name="payment_id">
@@ -150,7 +177,7 @@
             "autoWidth": false,
             "responsive": true,
             iDisplayLength: 25,
-            "order":[0,'desc']
+            "order": [ 0, 'desc' ],
         });
 
         $(document).on('click', '.print-invoice', function(){

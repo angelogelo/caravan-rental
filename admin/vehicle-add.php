@@ -93,17 +93,29 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <span><b>Category</b></span>
+                                        <select name="vehicle_category" class="form-control form-control-sm">
+                                            <option>--- Select Category ---</option>
+                                            <option value="SUV">SUV</option>
+                                            <option value="VAN">VAN</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <span><b>Registration Expiry Date</b></span>
                                         <input type="date" name="registration_expiry" class="form-control form-control-sm" placeholder="Enter Registration Expiry Date" required>
                                     </div>
                                 </div>
-                                <div class="col-lg-2">
+                                <div class="col-lg-4">
                                     <span><b>Regular Package</b></span>
                                     <input type="text" name="regular_package" class="form-control form-control-sm number-format" placeholder="0" required>
                                 </div>
-                                <div class="col-lg-2">
+                                <div class="col-lg-4">
                                     <span><b>Complete Package</b></span>
                                     <input type="text" name="complete_package" class="form-control form-control-sm number-format" placeholder="0" required>
                                 </div>
