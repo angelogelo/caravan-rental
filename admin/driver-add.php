@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <span><b>Years of Experience</b></span>
+                                        <span><b>Total Experience</b></span>
                                         <input type="number" name="total_exp" class="form-control form-control-sm" placeholder="Enter Total Experience" required>
                                     </div>
                                 </div>

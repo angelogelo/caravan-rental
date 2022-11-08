@@ -108,7 +108,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <span><b>Registration Expiry Date</b></span>
-                                        <input type="date" name="registration_expiry" class="form-control form-control-sm" placeholder="Enter Registration Expiry Date" required>
+                                        <input type="date" name="registration_expiry" id="disableDate" class="form-control form-control-sm" placeholder="Enter Registration Expiry Date" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
@@ -273,6 +273,22 @@
             parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             return parts.join(".");
         }
+
+        //disable past date
+        var dtToday = new Date();
+    
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if(month < 10)
+            month = '0' + month.toString();
+        if(day < 10)
+            day = '0' + day.toString();
+        
+        var maxDate = year + '-' + month + '-' + day;
+
+        $('#disableDate').attr('min', maxDate);
+
 
     });
 </script>

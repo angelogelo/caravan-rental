@@ -28,6 +28,7 @@
                         <table id="invoiceListTables" class="table table-condensed table-hover table-sm text-sm">
                             <thead>
                                 <th class="display">#</th>
+                                <th>Customer Name</th>
                                 <th>Invoice Number</th>
                                 <th>Actions</th>
                             </thead>
@@ -36,9 +37,16 @@
                                 <?php
                                     $invoice = $connection->query("SELECT * FROM tbl_invoice");
                                     while($invoice_row = $invoice->fetch_array()){
+
+                                    $selectInvoice = $connection->query("SELECT * FROM tbl_rents WHERE invoice_number = '".$invoice_row['invoice_number']."'");
+                                    $selectInvoiceRow = $selectInvoice->fetch_array();
+
+                                    $customer = $connection->query("SELECT * FROM user WHERE id = '".$selectInvoiceRow['customer_id']."'");
+                                    $customer_row = $customer->fetch_array();
                                 ?>
                                 <tr>
                                     <td class="display"><?= $invoice_row['id'];?></td>
+                                    <td><?= $customer_row['firstname'];?> <?= $customer_row['lastname'];?></td>
                                     <td><?= $invoice_row['invoice_number'];?></td>
                                     <td>
                                         <button type="button" class="btn btn-primary btn-xs print-invoice" data-id="<?php echo $invoice_row['invoice_number']; ?>"><i class="fas fa-print"></i></button>
