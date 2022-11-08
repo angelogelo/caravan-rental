@@ -24,6 +24,7 @@
     $price = $_POST['price'];
     $regular = $_POST['regular_package'];
     $complete = $_POST['complete_package'];
+    $vehicle_fuel = $_POST['fuel'];
 
     $vehicle_category = $_POST['vehicle_category'];
 
@@ -41,6 +42,7 @@
             vehicle_transmission, 
             vehicle_name, 
             year_model,
+            vehicle_fuel,
             seat_capacity, 
             manufactured_by,
             plate_number,
@@ -54,6 +56,7 @@
             '$vehicle_transmission',
             '$vehicle_name',
             '$year_model',
+            '$vehicle_fuel',
             '$seat_capacity',
             '$manufactured_by',
             '$plate_number',

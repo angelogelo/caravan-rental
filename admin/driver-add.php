@@ -72,12 +72,12 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <span><b>License Expiry Date</b></span>
-                                        <input type="date" name="license_expiry" class="form-control form-control-sm" placeholder="Enter Engine No" required>
+                                        <input type="date" name="license_expiry" id="disableDate" class="form-control form-control-sm" placeholder="Enter Engine No" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <span><b>Total Experience</b></span>
+                                        <span><b>Years of Experience</b></span>
                                         <input type="number" name="total_exp" class="form-control form-control-sm" placeholder="Enter Total Experience" required>
                                     </div>
                                 </div>
@@ -169,6 +169,21 @@
                 }
             })
         });
+
+        //disable past date
+        var dtToday = new Date();
+    
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if(month < 10)
+            month = '0' + month.toString();
+        if(day < 10)
+            day = '0' + day.toString();
+        
+        var maxDate = year + '-' + month + '-' + day;
+
+        $('#disableDate').attr('min', maxDate);
 
     });
 </script>

@@ -95,12 +95,18 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <span><b>Category</b></span>
+                                        <span><b>Body Type</b></span>
                                         <select name="vehicle_category" class="form-control form-control-sm">
                                             <option>--- Select Category ---</option>
                                             <option value="SUV">SUV</option>
                                             <option value="VAN">VAN</option>
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <span><b>Fuel</b></span>
+                                        <input type="text" name="fuel" class="form-control form-control-sm" placeholder="Enter Fuel" required>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +141,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <span><b>Model</b></span>
+                                        <span><b>Year Model</b></span>
                                         <input type="number" name="year_model" class="form-control form-control-sm" placeholder="Enter Year Model" required>
                                     </div>
                                 </div>
@@ -150,13 +156,13 @@
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <span><b>Manufactured By</b></span>
+                                        <span><b>Make</b></span>
                                         <input type="text" name="manufactured_by" class="form-control form-control-sm" placeholder="Enter Manufactured By" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <span><b>Vehicle Plate Number</b></span>
+                                        <span><b>Plate No.</b></span>
                                         <input type="text" name="plate_number" class="form-control form-control-sm" placeholder="Enter Vehicle Plate Number" required>
                                     </div>
                                 </div>

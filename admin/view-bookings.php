@@ -234,10 +234,15 @@
                             <div class="modal fade" id="declineBooking<?php echo $booking_row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
+                                        <div class="modal-header border-0 mb-0">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
 
                                         <form action="" method="POST" enctype="multipart/form-data" class="declinedBookingForm" id="declinedBookingForm<?php echo $booking_row['id']; ?>" data-id="<?php echo $booking_row['id']; ?>">
 
-                                            <div class="modal-body">
+                                            <div class="modal-body mt-0">
                                                 <div class="form-group row">
                                                     <div class="col-md-12">
                                                         <p class="h6">Are you sure you want to cancelled this booking?</p>
@@ -251,7 +256,6 @@
                                                     </div>
                                                 </div>	
                                                 <input type="hidden" name="update_id" id="update_id" value="<?php echo $booking_row['id']; ?>">
-                                                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" style="margin-right: 10px;">Cancel</button>
                                                 <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
                                             </div><!-- /.modal-body -->
                                         </form><!-- /.form -->

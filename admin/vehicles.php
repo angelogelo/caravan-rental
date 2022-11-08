@@ -129,13 +129,19 @@
                                         </span>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Manufactured By</b>
+                                        <b>Make</b>
                                         <span class="float-right">
                                             <?= $vehicle_row['manufactured_by']; ?>
                                         </span>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Plate Number</b>
+                                        <b>Fuel</b>
+                                        <span class="float-right">
+                                            <?= $vehicle_row['vehicle_fuel']; ?>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Plate No.</b>
                                         <span class="float-right">
                                             <?= $vehicle_row['plate_number']; ?>
                                         </span>
