@@ -31,11 +31,10 @@
 		$subject = 'Booking Confirmation';
 		
 		$body = 'Thank you for renting a vehicle, '.ucwords($name).'!<br><br>
-            Your booking reservation with Caravan is now successfully comfirm! Thank you again! See you around and have a nice day!<br><br>
+            Your booking reservation with Caravan is now successfully confirmed! See you around and have a nice day<br><br>
 
                 If you need to get in touch, you can email or message us via in app..!
-            <br><br><br><br><br>
-            This is an automatically generated email. Please do not reply to this email';
+            <br><br><br>';
 		
 		sendMail($to, $name, $subject, $body);
 		

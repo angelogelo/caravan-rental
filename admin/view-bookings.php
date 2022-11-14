@@ -166,7 +166,7 @@
                                                     if ($payment_row['status'] == 0) {
                                                         $payment_status = '<span class="right badge badge-warning">Pending</span>';
                                                     }else if ($payment_row['status'] == 1){
-                                                        $payment_status = '<span class="badge badge-success">Confirm</span>';
+                                                        $payment_status = '<span class="badge badge-success">Confirmed</span>';
                                                     }else if ($payment_row['status'] == 2){
                                                         $payment_status = '<span class="badge badge-secondary">Refund</span>';
                                                     }else {

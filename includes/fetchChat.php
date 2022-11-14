@@ -30,13 +30,13 @@
 				$position = "ml-auto";
 				$textAlign = "text-right";
 				$bgColor = "col-md-6 bg-secondary text-white rounded border py-1";
-				//$from = "You";
+				$from = "You";
 				$time = date("h:ia", strtotime($chatsRow['created_at']))." | ".date("M d, Y", strtotime($chatsRow['created_at']));
 			}else {
 				$position = "mr-auto";
 				$textAlign = "text-left";
 				$bgColor = "col-md-6 bg-light text-dark rounded border py-1";
-				//$from = $chatsRow['sender'];
+				$from = $chatsRow['sender'];
 				$time = date("h:ia", strtotime($chatsRow['created_at']))." | ".date("M d, Y", strtotime($chatsRow['created_at']));
 			}
 			?>

@@ -28,7 +28,7 @@
 		$to = $email;
 		$subject = 'Payment Confirmation';
 
-        if ($payment_type == 'Initial Payment'){
+        if ($payment_type == 'Partial Payment'){
             $body = 'Hi, '.ucwords($name).'!<br><br>
             Your reservation to Caravan is now Confirmed. Your balance is Php '.$balance.'. <br>Please pay your remaining balance in cash, thank you and have a nice day!
             <br><br><br><br><br>
