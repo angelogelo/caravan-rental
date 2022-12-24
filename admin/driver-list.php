@@ -21,6 +21,22 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card card-warning card-outline">
+                  <div class="card-header">
+                    <div class="card-tools">
+                      <select class="form-control" id="selectFilter">
+                        <option value="0">-- Select Restriction Code --</option>
+                        <option value="A">A - Motorcycle</option>
+                        <option value="A1">A1 - TRICYCLE</option>
+                        <option value="B">B - UP TO 5000 KGS GVW/8 SEATS</option>
+                        <option value="B1">B1 - UP TO 5000 KGS GVW/9 SEATS</option>
+                        <option value="B2">B2 - GOODS < 3500 KGS GVW</option>
+                        <option value="C">C - GOODS > 3500 KGS GVW</option>
+                        <option value="D">D - BUS > 5000 KGS GVW/9 OR MORE SEATS</option>
+                        <option value="BE">BE - TRAILERS < 3500 KG</option>
+                        <option value="CE">CE - ARTICULATED C > 3500 KGS COMBINED GVW</option>
+                      </select>
+                    </div>
+                  </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="driverListTable" class="table table-condensed table-hover table-sm text-sm">
@@ -31,6 +47,7 @@
                                         <th>Name</th>
                                         <th>Contact No</th>
                                         <th>License No</th>
+                                        <th>Restriction Code</th>
                                         <th>License Exp Date</th>
                                         <th>Date of Joining</th>
                                         <th>Status</th>
@@ -43,6 +60,9 @@
                                       $number = 1;
                                       $driver = $connection->query("SELECT * FROM tbl_driver");
                                       while($driver_row = $driver->fetch_array()){
+
+                                        $select = $connection->query("SELECT driver_restriction FROM driver_restriction WHERE driver_id = '".$driver_row['id']."'");
+                                        
                                         
                                         if($driver_row['driver_status'] == 1){
                                           $status = '<span class="badge badge-success">Avaialable</span>';
@@ -59,6 +79,14 @@
                                         <td><?= $driver_row['driver_name']; ?></td>
                                         <td><?= $driver_row['contact_no']; ?></td>
                                         <td><?= $driver_row['license_no']; ?></td>
+                                        <td>
+                                          <?php
+                                            foreach($select as $res){
+                                              echo $res['driver_restriction'];
+                                              echo ", ";
+                                            }    
+                                          ?>
+                                        </td>
                                         <td><?= $driver_row['license_expiry']; ?></td>
                                         <td><?= $driver_row['date_joining']; ?></td>
                                         <td>
@@ -114,6 +142,25 @@
       "autoWidth": false,
       "responsive": true,
       iDisplayLength: 25,
+    });
+
+    let tableSettings = {
+        'paging': true,
+        'iDisplayLength': 100,
+        'ordering': true,
+        'deferRender': true,
+        'bserverSide': true, //still giving an error
+        'retrieve': true
+    };
+
+    var table = $('#driverListTable').DataTable(tableSettings);
+
+    $("#selectFilter").change(function () { 
+        if (this.value == 0) {
+          table.columns().search('').draw();
+        } else {
+          table.columns().columns(5).search(this.value).draw();
+        }
     });
 
     $(document).on('click', '.view-driver', function(){

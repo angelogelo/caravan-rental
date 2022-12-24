@@ -55,6 +55,7 @@
                                                 <th class="table-plus datatable-nosort no-display" >#</th>
                                                 <th class="table-plus datatable-nosort" >Booking #</th>
                                                 <th>Customer Name</th>
+                                                <th>Uploaded ID</th>
                                                 <th>Vehicle</th>
                                                 <th>Booking Date</th>
                                                 <th>Pick Up Date</th>
@@ -77,6 +78,9 @@
 
                                                     $vehicle = $connection->query("SELECT * FROM tbl_vehicle WHERE id = '".$rent_row['vehicle_id']."'");
                                                     $vehicle_row = $vehicle->fetch_array();
+                                                    
+                                                    $req = $connection->query("SELECT * FROM tbl_requirements_photo WHERE customer_id = '".$rent_row['customer_id']."'");
+                                                    $req_row = $req->fetch_array();
 
                                                     if ($rent_row['rent_status'] == 0) {
                                                         $status = '<span class="right badge badge-warning">Pending</span>';
@@ -90,6 +94,28 @@
                                                 <td class="no-display"><?= $rent_row['id']; ?></td>
                                                 <td><?= $rent_row['booking_number']; ?></td>
                                                 <td><?= ucwords($customer_row['firstname'].' '.$customer_row['lastname']); ?></td>
+                                                <td>
+                                                    <img src="../user-photo/<?php echo $req_row['photo']; ?>" class="profile-user-img img-fluid img-square" style="width: 50px; cursor: pointer;" data-toggle="modal" data-target="#show">
+                                                    
+                                                    <div class="modal fade" id="show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Requirements Photo</h4>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <center>
+                                                                        <img src="../user-photo/<?php echo $req_row['photo']; ?>" class="" style="width: 400px; cursor: pointer;" data-toggle="modal" data-target="#show">
+                                                                    </center>
+                                                                </div><!-- /.modal-body -->
+                                                            </div><!-- /.modal-content -->
+                                                        </div><!-- /.modal-dialog -->
+                                                    </div><!-- /.modal-fade -->
+                                                    
+                                                </td>
                                                 <td><?= $vehicle_row['vehicle_name']; ?></td>
                                                 <td><?= date('F j, Y - l - h:i a', strtotime($rent_row['booking_date'])); ?></td>
                                                 <td><?= date('F d, Y', strtotime($rent_row['pick_up_date'])); ?></td>

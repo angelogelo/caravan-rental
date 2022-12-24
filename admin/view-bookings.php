@@ -13,7 +13,13 @@
     $vehicle_row = $vehicle->fetch_array();
 
     $driver = $connection->query("SELECT * FROM tbl_driver WHERE id = '".$booking_row['driver_id']."'");
-    // $driver_row = $driver->fetch_array();
+    $driver_row = $driver->fetch_array();
+
+    if($driver_row['driver_status'] == 1){
+        $status = '<span class="badge badge-success">Avaialable</span>';
+      }else{
+        $status = '<span class="badge badge-danger">Not Avaialable</span>';
+      }
 
     $payment = $connection->query("SELECT * FROM tbl_payment WHERE booking_id = '$id' AND status = 1");
     $payment_row = $payment->fetch_array();
@@ -61,13 +67,21 @@
                 <div class="callout callout-warning">
                     <!-- title row -->
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <h4><strong>Customer Information</strong></h4>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <h4><strong>Vehicle Information</strong></h4>
                         </div>
-                        <div class="col-sm-4">
+                        <?php
+                            if($driver_row = 0){
+                        ?>
+                        <div class="col-sm-3">
+                            <h4><strong>Driver Information</strong></h4>
+                        </div>
+                        <?php } ?>
+                        
+                        <div class="col-sm-3">
                             <h4>
                                 <small class="float-right"><strong>Booking Date: </strong> <?= date('M d,Y', strtotime($booking_row['booking_date'])); ?></small>
                             </h4>
@@ -76,7 +90,7 @@
 
                     <div class="row invoice-info">
 
-                        <div class="col-sm-4 invoice-col">
+                        <div class="col-sm-3 invoice-col">
                             <address>
                                 <strong>Name: <?= ucwords($customer_row['firstname'].' '.$customer_row['lastname']); ?></strong><br>
                                 Address: <?= $customer_row['address']; ?><br>
@@ -85,12 +99,23 @@
                             </address>
                         </div>
 
-                        <div class="col-sm-4 invoice-col">
+                        <div class="col-sm-3 invoice-col">
                             <address>
                                 <strong>Vehicle Name: <?= ucwords($vehicle_row['vehicle_name']); ?></strong><br>
                                 Seat Capacity: <?= $vehicle_row['seat_capacity']; ?><br>
                             </address>
                         </div>
+                            
+                        <?php
+                            if($driver_row = 0){
+                        ?>
+                        <div class="col-sm-3 invoice-col">
+                            <address>
+                                <strong>Driver Name: <?= ucwords($driver_row['driver_name']); ?></strong><br>
+                               Status: <?= $status; ?><br>
+                            </address>
+                        </div>
+                        <?php } ?>
 
                     </div>
                     <hr>
@@ -103,15 +128,16 @@
                     <div class="row">
                         <div class="col-lg-12 table-resposive">
                             <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Pick Up Date</th>
-                                    <th>Return Date</th>
-                                    <th>Package Type</th>
-                                    <th>Total Rent Days</th>
-                                    <th>Rent per Day</th>
-                                    <th>Sub Total</th>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th>Pick Up Date</th>
+                                        <th>Return Date</th>
+                                        <th>Package Type</th>
+                                        <th>Total Rent Days</th>
+                                        <th>Rent per Day</th>
+                                        <th>Sub Total</th>
+                                    </tr>
+                                </thead>
                                 <tbody>
                                     <tr>
                                         <td><?= date('M d, Y H:i a', strtotime($booking_row['pick_up_date'])); ?></td>
@@ -122,7 +148,6 @@
                                         <td>₱ <?= $booking_row['total_amount']; ?></td>
                                     </tr>
                                 </tbody>
-                            </thead>
                             </table>
                         </div>
                     </div>
@@ -145,15 +170,16 @@
                         <div class="row">
                             <div class="col-lg-12 table-resposive">
                                 <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Payment Method</th>
-                                        <th>Transaction No</th>
-                                        <th>Proof of Payment</th>
-                                        <th>Payment Type</th>
-                                        <th>Amount</th>
-                                        <th>Payment Status</th>
-                                    </tr>
+                                    <thead>
+                                        <tr>
+                                            <th>Payment Method</th>
+                                            <th>Transaction No</th>
+                                            <th>Proof of Payment</th>
+                                            <th>Payment Type</th>
+                                            <th>Amount</th>
+                                            <th>Payment Status</th>
+                                        </tr>
+                                    </thead>
                                     <tbody>
                                         <tr>
                                             <td><?= $booking_row['mode_of_payment']; ?></td>
@@ -178,7 +204,6 @@
                                             </td>
                                         </tr>
                                     </tbody>
-                                </thead>
                                 </table>
                             </div>
                         </div>

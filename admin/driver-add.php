@@ -3,12 +3,25 @@
     include 'header.php';
 ?>
 
+<style>
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #007bff;
+        border: 1px solid #007bff;
+        border-radius: 4px;
+        cursor: default;
+        float: left;
+        margin-right: 5px;
+        margin-top: 5px;
+        padding: 0 5px;
+    }
+</style>
+
 <!-- Content Header (Page header) -->
 <div class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Add Driver</h1>
+        <h1 class="m-0">Add Driver </h1>
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
@@ -18,7 +31,7 @@
 <!-- Main content -->
 <div class="content">
     <div class="container-fluid">
-        <form action="" method="POST" enctype="multipart/form-data" id="driverAddForm"> 
+        <form method="POST" enctype="multipart/form-data" id="driverAddForm"> 
             <div class="row">
                 <div class="col-lg-4">
                     <div class="card card-warning card-outline">
@@ -84,16 +97,20 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <span><b>Address</b></span>
-                                        <textarea class="form-control form-control-sm" name="address" id="" rows="4" placeholder="Address......" required></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-8">
                                     <div class="form-group">
                                         <span><b>Restriction Code</b></span>
-                                        <input type="text" name="license_restriction" class="form-control form-control-sm" placeholder="Enter License Resctriction" required>
+                                        <!-- <input type="text" name="license_restriction" class="form-control form-control-sm" placeholder="Enter License Resctriction" required> -->
+                                        <select name="license_restriction[]" class="form-control form-control-sm select2" data-placeholder="--- Select Restriction ---" multiple style="width: 100%;">
+                                            <?php
+                                                $res = $connection->query("SELECT * FROM tbl_restriction");
+                                                while($res_row = $res->fetch_array()){
+                                            ?>
+                                                <option value="<?= $res_row['res_code'] ?>"><?= $res_row['res_code'] ?> - <?= $res_row['res_details'] ?></option>
+                                            <?php
+                                                }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
@@ -103,9 +120,18 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <span><b>Address</b></span>
+                                        <textarea class="form-control form-control-sm" name="address" id="" rows="4" placeholder="Address......" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
                         </div><!-- /.card-body -->
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-save"></i> | Add Driver</button>
+                            <button type="submi" class="btn btn-primary btn-sm" name="addDriver"><i class="fas fa-save"></i> | Add Driver</button>
                         </div>
                     </div><!-- /.card -->
                     

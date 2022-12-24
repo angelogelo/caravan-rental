@@ -34,11 +34,21 @@
 <script src="../assets/plugins/chart.js/Chart.min.js"></script>
 <script src="../assets/chart.js/Chart.js"></script>
 <script src="../assets/lightslider/src/js/lightslider.js"></script>
+<!-- Select2 -->
+<script src="../assets/plugins/select2/js/select2.full.min.js"></script>
 </body>
 </html>
 
 <script>
 	$(function(){
+
+		//Initialize Select2 Elements
+		$('.select2').select2()
+
+		//Initialize Select2 Elements
+		$('.select2bs4').select2({
+		theme: 'bootstrap4'
+		})
 
 		$('#logoutButton').click(function(){
           var type = $(this).attr('data-type');

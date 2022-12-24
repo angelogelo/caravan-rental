@@ -14,7 +14,6 @@
     $total_exp = $_POST['total_exp'];
     $address = $_POST['address'];
     $date_joining = $_POST['date_joining'];
-    $license_restriction = $_POST['license_restriction'];
 
     if (move_uploaded_file($picture_tmp, '../drivers-photo/'.$picture)) {
 
@@ -25,7 +24,6 @@
             birthdate, 
             license_no, 
             license_expiry,
-            license_restriction,
             total_exp,
             address,
             date_joining
@@ -36,13 +34,30 @@
             '$birthdate',
             '$license_no',
             '$license_expiry',
-            '$license_restriction',
             '$total_exp',
             '$address',
             '$date_joining'
         )");
 
+    $last_id = $connection->insert_id;
+
     }else{
         echo "Image Failed";
     }
+
+    
+    $license = $_POST['license_restriction'];
+
+    foreach($license as $licenses){
+
+        $insert = $connection->query("INSERT INTO driver_restriction (driver_id, driver_restriction) VALUES ('$last_id', '$licenses')");
+    
+        if($insert === "TRUE"){
+            echo "Added";
+        }else{
+            echo "Failed";
+        }
+    }
+
+    
 ?>

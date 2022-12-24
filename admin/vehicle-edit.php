@@ -109,7 +109,7 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <span><b>Manufactured By</b></span>
+                                            <span><b>Make</b></span>
                                             <input type="text" name="manufactured_by" value="<?= $vehicle_row['manufactured_by']; ?>" class="form-control form-control-sm" placeholder="Enter Manufactured By">
                                         </div>
                                     </div>

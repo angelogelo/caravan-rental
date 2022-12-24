@@ -5,8 +5,34 @@
     $id = $_GET['id'];
     $driver = $connection->query("SELECT * FROM tbl_driver WHERE id = '$id'");
     $driver_row = $driver->fetch_array();
+   
+    if($_GET['id']){
 
+        $driver_id = $_GET['id'];
+
+        $fetchquery = "SELECT driver_restriction FROM driver_restriction WHERE driver_id = '$driver_id'";
+        $fetchquery_run = mysqli_query($connection, $fetchquery);
+        
+        $dri_res = [];
+        
+        foreach($fetchquery_run as $fetchrow){
+            $dri_res[] = $fetchrow['driver_restriction'];
+        }
+    }
 ?>
+
+<style>
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #007bff;
+        border: 1px solid #007bff;
+        border-radius: 4px;
+        cursor: default;
+        float: left;
+        margin-right: 5px;
+        margin-top: 5px;
+        padding: 0 5px;
+    }
+</style>
 
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -97,22 +123,40 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-lg-4">
+                                <div class="col-lg-8">
                                     <div class="form-group">
-                                        <span><b>Address</b></span>
-                                        <textarea class="form-control form-control-sm" name="address" id="" rows="4" placeholder="Address......" required> <?= $driver_row['address']; ?> </textarea>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <span><b>Restriction</b></span>
-                                        <input type="text" name="license_restriction" class="form-control form-control-sm" placeholder="Enter License Resctriction" value="<?= $driver_row['license_restriction']; ?>" required>
+                                        <span><b>Restriction Code</b></span>
+                                        <!-- <input type="text" name="license_restriction" class="form-control form-control-sm" placeholder="Enter License Resctriction" required> -->
+                                        <select name="license_restriction[]" class="form-control form-control-sm select2" data-placeholder="--- Select Restriction ---" required multiple style="width: 100%;">
+                                            <?php
+                                                $select = "SELECT * FROM tbl_restriction";
+                                                $query_run = mysqli_query($connection, $select);
+                                                if(mysqli_num_rows($query_run) > 0){
+                                                    foreach($query_run as $row){
+                                                        ?>
+                                                            <option value="<?= $row['res_code'] ?>" <?= in_array($row['res_code'], $dri_res) ? 'selected':'' ?> ><?= $row['res_code'] ?> - <?= $row['res_details'] ?></option>
+                                                        <?php
+                                                    }
+                                                }else{
+                                                    
+                                                }
+                                            ?>
+                                            
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <span><b>Date of Joining</b></span>
                                         <input type="date" name="date_joining" class="form-control form-control-sm" value="<?= $driver_row['date_joining']; ?>" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <span><b>Address</b></span>
+                                        <textarea class="form-control form-control-sm" name="address" id="" rows="4" placeholder="Address......" required> <?= $driver_row['address']; ?> </textarea>
                                     </div>
                                 </div>
                             </div>
