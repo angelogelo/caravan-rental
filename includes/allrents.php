@@ -1,9 +1,9 @@
 <?php
 define('HOST','localhost');
-define('USER','u315516982_caravan_rental');
-define('PASS','Vt9:iESO|sf');
-define('DB','u315516982_caravan_rental');
-
+define('USER','u847377087_caravan_rental');
+define('PASS','9*cq3>X64J:x');
+define('DB','u847377087_caravan_rental');
+ 
 
 $con = mysqli_connect(HOST,USER,PASS,DB);
 

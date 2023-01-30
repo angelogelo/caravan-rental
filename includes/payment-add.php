@@ -4,11 +4,12 @@
 
     $amount = $_POST['amount'];
     $payment_type = 'Full Payment';
-    $transaction_no = rand();
+    $transaction_no = $_POST['or_no'];
     $booking_id = $_POST['booking_id'];
     $customer_id = $_POST['customer_id'];
     $status = 1;
     $total_amount = $_POST['total_amount'];
+    $vehicle_id = $_POST['vehicle_id'];
     
     // if($amount < $total_amount){
     
@@ -34,7 +35,7 @@
     if($select->num_rows < 1){
         if($amount == $total_amount){
             
-            $insert = $connection->query("INSERT INTO tbl_payment (transaction_no, booking_id, customer_id, payment_type, amount, status, confirmation_date, created_at) VALUES ('$transaction_no','$booking_id', '$customer_id', '$payment_type', '$amount', '$status', '$timeNow', '$timeNow')");
+            $insert = $connection->query("INSERT INTO tbl_payment (transaction_no, booking_id, vehicle_id, customer_id, payment_type, amount, status, confirmation_date, created_at) VALUES ('$transaction_no','$booking_id', '$vehicle_id', '$customer_id', '$payment_type', '$amount', '$status', '$timeNow', '$timeNow')");
             echo "Added";
         }else{
             echo "Limit";    

@@ -5,12 +5,12 @@
  * website: www.simplifiedcoding.net 
  * Retrieve Data From MySQL Database in Android
  */
- 
+
  //database constants
  define('DB_HOST', 'localhost');
- define('DB_USER', 'u315516982_caravan_rental');
- define('DB_PASS', 'Vt9:iESO|sf');
- define('DB_NAME', 'u315516982_caravan_rental');
+ define('DB_USER', 'u847377087_caravan_rental');
+ define('DB_PASS', '9*cq3>X64J:x');
+ define('DB_NAME', 'u847377087_caravan_rental');
  
  //connecting to database and getting the connection object
  $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -22,14 +22,14 @@
  }
  
  //creating a query
- $stmt = $conn->prepare("SELECT id, vehicle_photo, vehicle_transmission, vehicle_name, year_model, seat_capacity, manufactured_by, plate_number, vehicle_color, registration_expiry, regular_package, complete_package, vehicle_status FROM tbl_vehicle");
+ $stmt = $conn->prepare("SELECT id, vehicle_category, vehicle_photo, vehicle_transmission, vehicle_name, year_model, seat_capacity, manufactured_by, plate_number, vehicle_color, registration_expiry, regular_package, complete_package, vehicle_status FROM tbl_vehicle");
  
  //executing the query 
  $stmt->execute();
  
  //binding results to the query 
  
- $stmt->bind_result($vehiclesId,$vehiclesPhoto,$transmission, $vehicle_name, $year_model, $seat_capacity, $manufactured_by, $plate_number, $vehicle_color, $registration_expiry, $regular_package, $complete_package, $vehicle_status);
+ $stmt->bind_result($vehiclesId,$vehicleCategory,$vehiclesPhoto,$transmission, $vehicle_name, $year_model, $seat_capacity, $manufactured_by, $plate_number, $vehicle_color, $registration_expiry, $regular_package, $complete_package, $vehicle_status);
  
  
  $vehicles = array();
@@ -37,7 +37,8 @@
  //traversing through all the result 
  while($stmt->fetch()){
  $temp = array();
- $temp['vehiclesId'] = $vehiclesId; 
+ $temp['vehiclesId'] = $vehiclesId;
+ $temp['vehicle_category'] = $vehicleCategory;
  $temp['vehiclesPhoto'] = $vehiclesPhoto;
  $temp['transmission'] = $transmission;
  $temp['vehiclesName'] = $vehicle_name; 

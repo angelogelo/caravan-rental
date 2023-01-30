@@ -93,16 +93,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <span><b>Body Type</b></span>
-                                        <select name="vehicle_category" class="form-control form-control-sm">
-                                            <option>--- Select Category ---</option>
-                                            <option value="SUV">SUV</option>
-                                            <option value="VAN">VAN</option>
-                                        </select>
+                                        <span><b>Seat Capacity</b></span>
+                                        <input type="number" name="seat_capacity" class="form-control form-control-sm" placeholder="Enter Seat Capacity" required>
                                     </div>
                                 </div>
+
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <span><b>Fuel</b></span>
@@ -119,11 +117,11 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <span><b>Regular Package</b></span>
-                                    <input type="text" name="regular_package" class="form-control form-control-sm number-format" placeholder="0" required>
+                                    <input type="number" name="regular_package" class="form-control form-control-sm" placeholder="0" required>
                                 </div>
                                 <div class="col-lg-4">
                                     <span><b>Complete Package</b></span>
-                                    <input type="text" name="complete_package" class="form-control form-control-sm number-format" placeholder="0" required>
+                                    <input type="number" name="complete_package" class="form-control form-control-sm" placeholder="0" required>
                                 </div>
                                 <!-- <div class="col-md-4">
                                     <div class="form-group">
@@ -136,19 +134,33 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <span><b>Vehicle Name</b></span>
-                                        <input type="text" name="vehicle_name" class="form-control form-control-sm" placeholder="Enter Vehicle Name" required>
+                                        <!-- <input type="text" name="vehicle_name" class="form-control form-control-sm" placeholder="Enter Vehicle Name" required> -->
+                                        <select onchange="fetchVehicle()" id="vehicle" class="form-control form-control-sm" name="vehicle_name" class="form-control form-control-sm" data-placeholder="--- Select Restriction ---">
+                                            <?php
+                                                $vehicle = $connection->query("SELECT * FROM tbl_vehicle_maintainability");
+                                                while($vehicle_row = $vehicle->fetch_array()){
+                                            ?>
+                                                <option value="<?= $vehicle_row['vehicle'] ?>"><?= $vehicle_row['vehicle'] ?></option>
+                                            <?php } ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <span><b>Year Model</b></span>
-                                        <input type="number" name="year_model" class="form-control form-control-sm" placeholder="Enter Year Model" required>
+                                        <span><b>Make</b></span>
+                                        <input id="make" type="text" name="manufactured_by" class="form-control form-control-sm" disabled required>
                                     </div>
                                 </div>
+
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <span><b>Seat Capacity</b></span>
-                                        <input type="number" name="seat_capacity" class="form-control form-control-sm" placeholder="Enter Seat Capacity" required>
+                                        <span><b>Body Type</b></span>
+                                        <!-- <select name="vehicle_category" class="form-control form-control-sm">
+                                            <option>--- Select Category ---</option>
+                                            <option value="SUV">SUV</option>
+                                            <option value="VAN">VAN</option>
+                                        </select> -->
+                                        <input id="body" type="text" name="vehicle_category" class="form-control form-control-sm" disabled required>
                                     </div>
                                 </div>
                             </div>
@@ -156,8 +168,8 @@
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <span><b>Make</b></span>
-                                        <input type="text" name="manufactured_by" class="form-control form-control-sm" placeholder="Enter Manufactured By" required>
+                                        <span><b>Year Model</b></span>
+                                        <input type="number" name="year_model" class="form-control form-control-sm" placeholder="Enter Year Model" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
@@ -203,9 +215,33 @@
     function preview(){
         var totalFiles = $('#fileImg').get(0).files.length;
         for(var i = 0; i < totalFiles; i++){
-          $('#preview').append("<img src = '"+URL.createObjectURL(event.target.files[i])+"'>");
+            $('#preview').append("<img src = '"+URL.createObjectURL(event.target.files[i])+"'>");
         }
-      }
+    }
+
+    function fetchVehicle(){
+
+        var id = document.getElementById("vehicle").value;
+        // alert(id);
+        $.ajax({
+            url:"fetch.php",
+            method: "POST",
+            data:{
+                x : id
+            },
+            dataType: "JSON",
+            success:function(data){
+                document.getElementById("make").value = data.make;
+                const body_type = document.getElementById("body");
+
+                if (body_type != null) {
+                    body_type.value = data.body;
+                }
+                //document.getElementById("body)").value = data.body;
+                //console.log(data)
+            }
+        });
+    }
 
 </script>
 
@@ -294,7 +330,6 @@
         var maxDate = year + '-' + month + '-' + day;
 
         $('#disableDate').attr('min', maxDate);
-
 
     });
 </script>

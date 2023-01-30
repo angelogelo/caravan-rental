@@ -47,7 +47,25 @@
                         <div class="card card-warning card-outline">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <span><b>Status</b></span>
+                                            <select class="form-control form-control-sm" name="status" required>
+                                                <option >-- Select Status --</option>
+                                                <option value="0">Available</option>
+                                                <option value="1">On Rent</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <span><b>Registration Expiry Date</b></span>
+                                            <input type="date" name="registration_expiry" value="<?= $vehicle_row['registration_expiry']; ?>" class="form-control form-control-sm" placeholder="Enter Registration Expiry Date">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
                                         <div class="form-group">
                                             <p class="h6"><b>Transmission</b></p>
                                             <div class="custom-control custom-radio custom-control-inline">
@@ -60,27 +78,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-2">
-                                        <div class="form-group">
-                                            <span><b>Status</b></span>
-                                            <select class="form-control form-control-sm" name="status" required>
-                                                <option >-- Select Status --</option>
-                                                <option value="0">Available</option>
-                                                <option value="1">On Rent</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <div class="form-group">
-                                            <span><b>Registration Expiry Date</b></span>
-                                            <input type="date" name="registration_expiry" value="<?= $vehicle_row['registration_expiry']; ?>" class="form-control form-control-sm" placeholder="Enter Registration Expiry Date">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-4">
                                         <span><b>Regular Package</b></span>
                                         <input type="text" name="regular_package" value="<?= $vehicle_row['regular_package']; ?>" class="form-control form-control-sm number-format" placeholder="0" required>
                                     </div>
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-4">
                                         <span><b>Complete Package</b></span>
                                         <input type="text" name="complete_package" value="<?= $vehicle_row['complete_package']; ?>" class="form-control form-control-sm number-format" placeholder="0" required>
                                     </div>

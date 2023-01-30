@@ -128,16 +128,15 @@
                     <div class="row">
                         <div class="col-lg-12 table-resposive">
                             <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Pick Up Date</th>
-                                        <th>Return Date</th>
-                                        <th>Package Type</th>
-                                        <th>Total Rent Days</th>
-                                        <th>Rent per Day</th>
-                                        <th>Sub Total</th>
-                                    </tr>
-                                </thead>
+                            <thead>
+                                <tr>
+                                    <th>Pick Up Date</th>
+                                    <th>Return Date</th>
+                                    <th>Package Type</th>
+                                    <th>Total Rent Days</th>
+                                    <th>Rent per Day</th>
+                                    <th>Sub Total</th>
+                                </tr>
                                 <tbody>
                                     <tr>
                                         <td><?= date('M d, Y H:i a', strtotime($booking_row['pick_up_date'])); ?></td>
@@ -148,6 +147,7 @@
                                         <td>₱ <?= $booking_row['total_amount']; ?></td>
                                     </tr>
                                 </tbody>
+                            </thead>
                             </table>
                         </div>
                     </div>
@@ -170,16 +170,15 @@
                         <div class="row">
                             <div class="col-lg-12 table-resposive">
                                 <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Payment Method</th>
-                                            <th>Transaction No</th>
-                                            <th>Proof of Payment</th>
-                                            <th>Payment Type</th>
-                                            <th>Amount</th>
-                                            <th>Payment Status</th>
-                                        </tr>
-                                    </thead>
+                                <thead>
+                                    <tr>
+                                        <th>Payment Method</th>
+                                        <th>Transaction No</th>
+                                        <th>Proof of Payment</th>
+                                        <th>Payment Type</th>
+                                        <th>Amount</th>
+                                        <th>Payment Status</th>
+                                    </tr>
                                     <tbody>
                                         <tr>
                                             <td><?= $booking_row['mode_of_payment']; ?></td>
@@ -204,8 +203,30 @@
                                             </td>
                                         </tr>
                                     </tbody>
+                                </thead>
                                 </table>
                             </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4><strong>Uploaded Requirements</strong></h4>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <?php
+                                $request = $connection->query("SELECT * FROM tbl_requirements_photo WHERE customer_id = '".$booking_row['customer_id']."'");
+                                 while($request_row = $request->fetch_array()){
+                            ?>
+                                <div class="col-4">
+                                    <div class="card mb-2 bg-gradient-dark">
+                                        <img class="card-img-top" src="../user-photo/<?php echo $request_row['photo']; ?>" alt="Requirements Photo" height="200" width="200">
+                                    </div>
+                                </div>
+                            <?php
+                                 }
+                            ?>
                         </div>
                         <hr>
                         <div class="row">
@@ -280,6 +301,7 @@
                                                         <textarea name="reason" class="form-control" id="reason" cols="5" rows="5" required></textarea>
                                                     </div>
                                                 </div>	
+                                                <input type="hidden" name="customer_id" id="update_id" value="<?php echo $booking_row['customer_id'] ?>">
                                                 <input type="hidden" name="update_id" id="update_id" value="<?php echo $booking_row['id']; ?>">
                                                 <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
                                             </div><!-- /.modal-body -->

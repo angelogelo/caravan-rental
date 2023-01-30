@@ -1,5 +1,5 @@
 <?php
-    $page = 'driver-list';
+    $page = 'driver-archived';
     include 'header.php';
 ?>
 <!-- Content Header (Page header) -->
@@ -7,7 +7,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Driver List</h1>
+        <h1 class="m-0">Driver Archived</h1>
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
@@ -21,22 +21,6 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card card-warning card-outline">
-                  <div class="card-header">
-                    <div class="card-tools">
-                      <select class="form-control" id="selectFilter">
-                        <option value="0">-- Select Restriction Code --</option>
-                        <option value="A">A - Motorcycle</option>
-                        <option value="A1">A1 - TRICYCLE</option>
-                        <option value="B">B - UP TO 5000 KGS GVW/8 SEATS</option>
-                        <option value="B1">B1 - UP TO 5000 KGS GVW/9 SEATS</option>
-                        <option value="B2">B2 - GOODS < 3500 KGS GVW</option>
-                        <option value="C">C - GOODS > 3500 KGS GVW</option>
-                        <option value="D">D - BUS > 5000 KGS GVW/9 OR MORE SEATS</option>
-                        <option value="BE">BE - TRAILERS < 3500 KG</option>
-                        <option value="CE">CE - ARTICULATED C > 3500 KGS COMBINED GVW</option>
-                      </select>
-                    </div>
-                  </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="driverListTable" class="table table-condensed table-hover table-sm text-sm">
@@ -50,15 +34,12 @@
                                         <th>Restriction Code</th>
                                         <th>License Exp Date</th>
                                         <th>Date of Joining</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                        <th style="width: 100px;">Update Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                       $number = 1;
-                                      $driver = $connection->query("SELECT * FROM tbl_driver WHERE driver_status = '1' OR driver_status = '2' ORDER BY id DESC");
+                                      $driver = $connection->query("SELECT * FROM tbl_driver WHERE driver_status = 0 ORDER BY id DESC");
                                       while($driver_row = $driver->fetch_array()){
 
                                         $select = $connection->query("SELECT driver_restriction FROM driver_restriction WHERE driver_id = '".$driver_row['id']."'");
@@ -73,7 +54,7 @@
                                         }
 
                                     ?>
-                                    <tr>
+                                    <tr class="deleteDriver" data-id="<?php echo $driver_row['id']; ?>">
                                         <td><?= $number++; ?></td>
                                         <td>
                                             <img src="../drivers-photo/<?php echo $driver_row['driver_photo']; ?>" class="profile-user-img img-fluid img-square" style="width: 50px;">
@@ -91,31 +72,6 @@
                                         </td>
                                         <td><?= $driver_row['license_expiry']; ?></td>
                                         <td><?= $driver_row['date_joining']; ?></td>
-                                        <td>
-                                            <?= $status; ?>
-                                        </td>
-                                        <td>
-                                          <button class="btn btn-success btn-xs view-driver" data-tooltip="tooltip" title="Click to View" data-id="<?php echo $driver_row['id']; ?>"><i class="fas fa-eye"></i></button>
-                                          <button class="btn btn-primary btn-xs edit-driver" data-tooltip="tooltip" title="Click to Edit" data-id="<?php echo $driver_row['id']; ?>"><i class="fas fa-edit"></i></button>
-                                          <button type="button" class="btn btn-danger btn-xs deleteDriver" data-id="<?php echo $driver_row['id']; ?>"><i class="fa fa-archive"></i></button>
-                                        </td>
-                                        <td>
-                                          <select class="form-control form-control-border border-width-2 ml-10 form-control-sm text-sm" onchange="status_update(this.options[this.selectedIndex].value,'<?php echo $driver_row['id'] ?>')" style="width: 125px;">
-                                              <?php
-                                                  if($driver_row['driver_status'] == 1){
-                                              ?>
-                                                  <option value="<?php echo $driver_row['driver_status']; ?>">Available</option>
-                                                  <option value="2">Not Available</option>
-                                              <?php
-                                                  }else{
-                                              ?>
-                                                  <option value="<?php echo $driver_row['driver_status']; ?>">Not Available</option>
-                                                  <option value="1">Available</option>
-                                              <?php
-                                                  }
-                                              ?>
-                                          </select>
-                                        </td>
                                     </tr>
                                     <?php } ?>
                                 </tbody>
@@ -178,8 +134,7 @@
     $(document).on('click', '.deleteDriver', function() {
 			var id = $(this).attr('data-id');
 			swal({
-				title: "Are you sure you want to archive this Driver?",
-				text: "Driver related to this will be archive as well. \n PROCEED WITH CAUTION!!!",
+				title: "Are you sure you want to unarchive this Driver?",
 				icon: "info",
 				buttons: {
 					cancel: "Cancel",
@@ -188,7 +143,7 @@
 			}).then(function(event) {
 				if (event == true) {
 					$.ajax({
-						url: "../includes/driver-delete.php",
+						url: "../includes/driver-delete-2.php",
 						method: "POST",
 						dataType: "TEXT",
 						data: {
@@ -197,15 +152,14 @@
 							console.log(data);
 							if (data === "Deleted") {
 								swal({
-									title: "Driver has been archived!",
+									title: "Driver has been unarchived!",
 									icon: "info"
 								}).then(function() {
-									//location.reload();
-									window.location.href = 'archive-driver.php';
+									location.reload();
 								});
 							} else {
 								swal({
-									title: "Failed to archived this Driver!",
+									title: "Failed to unarchived this Driver!",
 									icon: "info"
 								});
 							}

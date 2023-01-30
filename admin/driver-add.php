@@ -101,15 +101,16 @@
                                     <div class="form-group">
                                         <span><b>Restriction Code</b></span>
                                         <!-- <input type="text" name="license_restriction" class="form-control form-control-sm" placeholder="Enter License Resctriction" required> -->
-                                        <select name="license_restriction[]" class="form-control form-control-sm select2" data-placeholder="--- Select Restriction ---" multiple style="width: 100%;">
-                                            <?php
-                                                $res = $connection->query("SELECT * FROM tbl_restriction");
-                                                while($res_row = $res->fetch_array()){
-                                            ?>
-                                                <option value="<?= $res_row['res_code'] ?>"><?= $res_row['res_code'] ?> - <?= $res_row['res_details'] ?></option>
-                                            <?php
-                                                }
-                                            ?>
+                                        <select name="license_restriction[]" class="form-control form-control-sm select2" data-placeholder="--- Select Restriction ---" required multiple style="width: 100%;">
+                                            <option value="A">A - Motorcycle</option>
+                                            <option value="A1">A1 - TRICYCLE</option>
+                                            <option value="B">B - UP TO 5000 KGS GVW/8 SEATS</option>
+                                            <option value="B1">B1 - UP TO 5000 KGS GVW/9 SEATS</option>
+                                            <option value="B2">B2 - GOODS < 3500 KGS GVW</option>
+                                            <option value="C">C - GOODS > 3500 KGS GVW</option>
+                                            <option value="D">D - BUS > 5000 KGS GVW/9 OR MORE SEATS</option>
+                                            <option value="BE">BE - TRAILERS < 3500 KG</option>
+                                            <option value="CE">CE - ARTICULATED C > 3500 KGS COMBINED GVW</option>
                                         </select>
                                     </div>
                                 </div>

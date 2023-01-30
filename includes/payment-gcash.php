@@ -6,7 +6,7 @@ $picture_tmp = $_FILES['proof_of_payment']['tmp_name'];
 $picture_name = $_FILES['proof_of_payment']['name'];
 $picture = time()."_".$picture_name;
 
-$transaction_no = rand();
+$transaction_no = "";
 $booking_id = "1";
 $customer_id = "1";
 $payment_type = "1";

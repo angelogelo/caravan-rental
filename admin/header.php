@@ -137,6 +137,7 @@
               if(
                 $page == 'vehicle-list' ||
                 $page == 'vehicles' ||
+                $page == 'vehicle-maintainability' ||
                 $page == 'vehicle-add'
               ) {
                 $tree_open = ' menu-open';
@@ -168,6 +169,14 @@
                         </a>
                     </li>
                 </ul>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="vehicle-maintainability.php" class="nav-link <?php if($page == 'vehicle-maintainability') { echo ' active'; } ?>" style="color: black;">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Vehicle Name</p>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <?php 
@@ -177,6 +186,7 @@
                 $page == 'driver-list' ||
                 $page == 'drivers' ||
                 $page == 'driver-edit' ||
+                $page == 'driver-archived' ||
                 $page == 'driver-add'
               ) {
                 $tree_open = ' menu-open';
@@ -205,6 +215,14 @@
                         <a href="driver-add.php" class="nav-link <?php if($page == 'driver-add') { echo ' active'; } ?>" style="color: black;">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Add Driver</p>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="archive-driver.php" class="nav-link <?php if($page == 'driver-archived') { echo ' active'; } ?>" style="color: black;">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Archived Driver</p>
                         </a>
                     </li>
                 </ul>

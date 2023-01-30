@@ -18,6 +18,7 @@
     $regular_package = $_POST['regular_package'];
     $complete_package = $_POST['complete_package'];
     $status = $_POST['status'];
+    $vehicle_fuel = $_POST['fuel'];
 
     if($picture_tmp !== ""){
         if (move_uploaded_file($picture_tmp, '../vehicles-photo/'.$picture)) {
@@ -25,6 +26,7 @@
                 vehicle_photo = '$picture', 
                 vehicle_transmission = '$vehicle_transmission',
                 vehicle_name = '$vehicle_name',
+                vehicle_fuel = '$vehicle_fuel',
                 year_model = '$year_model',
                 seat_capacity = '$seat_capacity',
                 manufactured_by = '$manufactured_by',
@@ -46,6 +48,7 @@
         $update = $connection->query("UPDATE tbl_vehicle SET
             vehicle_transmission = '$vehicle_transmission',
             vehicle_name = '$vehicle_name',
+            vehicle_fuel = '$vehicle_fuel',
             year_model = '$year_model',
             seat_capacity = '$seat_capacity',
             manufactured_by = '$manufactured_by',

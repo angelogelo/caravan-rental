@@ -7,22 +7,23 @@
 
 	$connection = new mysqli($host, $username, $password, $database);
 	
-	$contact_no = $_POST['contact_no'];
+	$id = $_POST['id'];
+	$vehicle_status = $_POST['vehicle_status'];
 	
-	$sqlupdatestatus = "UPDATE user SET user_status = '1' WHERE contact_no = '$contact_no'";
+	$sqlupdatestatus = "UPDATE tbl_vehicle SET vehicle_status = '$vehicle_status' WHERE id = '$id'";
 	
 	$result = mysqli_query($connection, $sqlupdatestatus);
 	
 	if($result){
 	  $message["success"] = "1";
-      $message["message"] = "Account successfully verified";  
+      $message["message"] = "Vehicle status set to not available";  
       
       echo json_encode($message);
 	}
 	
 	else{
 	  $message["success"] = "0";
-      $message["message"] = "Account failed to verify";  
+      $message["message"] = "Failed to set vehicle status";  
       
       echo json_encode($message); 
 	}

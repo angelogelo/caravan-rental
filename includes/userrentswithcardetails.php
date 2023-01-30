@@ -1,13 +1,13 @@
 <?php
 define('HOST','localhost');
-define('USER','u315516982_caravan_rental');
-define('PASS','Vt9:iESO|sf');
-define('DB','u315516982_caravan_rental');
+define('USER','u847377087_caravan_rental');
+define('PASS','9*cq3>X64J:x');
+define('DB','u847377087_caravan_rental');
 
 
 $con = mysqli_connect(HOST,USER,PASS,DB);
 $Customer_ID = $_GET["customer_id"];
-$sql = "SELECT rents.*, vehicle.vehicle_photo, vehicle.vehicle_transmission, vehicle.vehicle_name, vehicle.year_model, vehicle.seat_capacity, vehicle.manufactured_by,vehicle.plate_number, vehicle.vehicle_color, vehicle.registration_expiry, vehicle.regular_package, vehicle.complete_package, vehicle.vehicle_status FROM tbl_rents rents, tbl_vehicle vehicle WHERE rents.vehicle_id = vehicle.id AND rents.customer_id like '%$Customer_ID%'";
+$sql = "SELECT rents.*, vehicle.vehicle_photo, vehicle.vehicle_transmission, vehicle.vehicle_name, vehicle.year_model, vehicle.seat_capacity, vehicle.manufactured_by,vehicle.plate_number, vehicle.vehicle_color, vehicle.registration_expiry, vehicle.regular_package, vehicle.complete_package, vehicle.vehicle_status FROM tbl_rents rents, tbl_vehicle vehicle WHERE rents.vehicle_id = vehicle.id AND rents.customer_id like '%$Customer_ID%' ORDER BY rents.booking_date DESC";
  
 $res = mysqli_query($con,$sql);
  

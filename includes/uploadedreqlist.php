@@ -1,11 +1,6 @@
 <?php 
  
- /*
- * Created by Gifted
- * website: www.simplifiedcoding.net 
- * Retrieve Data From MySQL Database in Android
- */
- 
+
  //database constants
  define('DB_HOST', 'localhost');
  define('DB_USER', 'u847377087_caravan_rental');
@@ -21,15 +16,15 @@
  die();
  }
  
+$customer_id = $_POST['customer_id'];
  //creating a query
- $stmt = $conn->prepare("SELECT id, driver_name, address, contact_no, driver_photo, total_exp, license_no FROM tbl_driver WHERE driver_status = 1");
+ $stmt = $conn->prepare("SELECT id, customer_id, photo, created_at FROM tbl_requirements_photo WHERE customer_id = '$customer_id'");
  
  //executing the query 
  $stmt->execute();
  
  //binding results to the query 
- //$stmt->bind_result($product_id, $product_name,  $product_description, $product_price);
- $stmt->bind_result($driversId,$driversName, $driversAddress,  $driversMobile, $driversPhoto, $driversExp, $driversLicense);
+ $stmt->bind_result($id,$customer_id,$photo,$created_at);
  
  //$products = array(); 
  $drivers = array();
@@ -37,13 +32,10 @@
  //traversing through all the result 
  while($stmt->fetch()){
  $temp = array();
- $temp['Number'] = $driversId; 
- $temp['Name'] = $driversName; 
- $temp['Address'] = $driversAddress; 
- $temp['Mobile'] = $driversMobile; 
- $temp['drivers_photo'] = $driversPhoto; 
- $temp['drivers_exp'] = $driversExp; 
- $temp['drivers_license'] = $driversLicense; 
+ $temp['id'] = $id;
+ $temp['customer_id'] = $customer_id;
+ $temp['photo'] = $photo;
+ $temp['created_at'] = $created_at;
  array_push($drivers, $temp);
  }
  

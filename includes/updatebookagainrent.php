@@ -1,9 +1,9 @@
 <?php 
 
-     $host = "localhost";
-	$username = "u315516982_caravan_rental";
- 	$password = "Vt9:iESO|sf";
-	$database = "u315516982_caravan_rental";
+    $host = "localhost";
+	$username = "u847377087_caravan_rental";
+ 	$password = "9*cq3>X64J:x";
+	$database = "u847377087_caravan_rental";
 
 	$connection = new mysqli($host, $username, $password, $database);
 	

@@ -57,7 +57,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                            <div class="row invoice-row">
+                        <div class="row invoice-row">
                             <h2 class="col-sm-12 invoice-col">
                                 <address>
                                     <img src="../assets/images/caravan.png" style="width: 200px;">
@@ -65,6 +65,14 @@
                                 </address>
                             </h2>
                         </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h5><strong>Invoice No.: <?= $invoice_number; ?></strong></h5>
+                            </div>
+                        </div>
+                        <hr>
+
                         <div class="row">
                             <div class="col-sm-4">
                                 <h4><strong>Customer Information</strong></h4>
@@ -78,6 +86,8 @@
                                 </h4>
                             </div>
                         </div>
+
+                        
 
                         <!-- 1st Row-->
                         <div class="row invoice-info">

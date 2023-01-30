@@ -5,12 +5,11 @@
  * website: www.simplifiedcoding.net 
  * Retrieve Data From MySQL Database in Android
  */
- 
  //database constants
  define('DB_HOST', 'localhost');
- define('DB_USER', 'u315516982_caravan_rental');
- define('DB_PASS', 'Vt9:iESO|sf');
- define('DB_NAME', 'u315516982_caravan_rental');
+ define('DB_USER', 'u847377087_caravan_rental');
+ define('DB_PASS', '9*cq3>X64J:x');
+ define('DB_NAME', 'u847377087_caravan_rental');
  
  //connecting to database and getting the connection object
  $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);

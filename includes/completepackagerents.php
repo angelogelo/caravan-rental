@@ -1,8 +1,8 @@
 <?php
 define('HOST','localhost');
-define('USER','id18669700_rental_cars');
-define('PASS','N@<3+cD2>lhj=uKW');
-define('DB','id18669700_rental');
+define('USER','u847377087_caravan_rental');
+define('PASS','9*cq3>X64J:x');
+define('DB','u847377087_caravan_rental');
 
 
 $con = mysqli_connect(HOST,USER,PASS,DB);

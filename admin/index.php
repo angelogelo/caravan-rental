@@ -72,7 +72,7 @@
                 <div class="small-box bg-light">
                     <div class="inner">
                         <?php 
-                            $total = $connection->query("SELECT SUM(total_amount) as `total_amount` FROM tbl_rents WHERE rent_status = 1");
+                            $total = $connection->query("SELECT SUM(amount) as `total_amount` FROM tbl_payment WHERE status = 1");
                             $count = $total->fetch_array();
                         ?>
                         

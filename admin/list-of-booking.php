@@ -58,6 +58,7 @@
                                                 <th>Uploaded ID</th>
                                                 <th>Vehicle</th>
                                                 <th>Booking Date</th>
+                                                <th>Total Rent Days</th>
                                                 <th>Pick Up Date</th>
                                                 <th>Return Date</th>
                                                 <th>Mode of Payment</th>
@@ -95,9 +96,9 @@
                                                 <td><?= $rent_row['booking_number']; ?></td>
                                                 <td><?= ucwords($customer_row['firstname'].' '.$customer_row['lastname']); ?></td>
                                                 <td>
-                                                    <img src="../user-photo/<?php echo $req_row['photo']; ?>" class="profile-user-img img-fluid img-square" style="width: 50px; cursor: pointer;" data-toggle="modal" data-target="#show">
+                                                    <img src="../user-photo/<?php echo $req_row['photo']; ?>" class="img-fluid img-square" height="50" width="50" style="cursor: pointer;" data-toggle="modal" data-target="#show<?php echo $req_row['id']; ?>">
                                                     
-                                                    <div class="modal fade" id="show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="show<?php echo $req_row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -108,7 +109,17 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <center>
-                                                                        <img src="../user-photo/<?php echo $req_row['photo']; ?>" class="" style="width: 400px; cursor: pointer;" data-toggle="modal" data-target="#show">
+                                                                        <?php
+                                                                            $request = $connection->query("SELECT * FROM tbl_requirements_photo WHERE customer_id = '".$rent_row['customer_id']."'");
+                                                                            while($request_row = $request->fetch_array()){
+                                                                        
+                                                                        ?>
+                                                                            <img src="../user-photo/<?php echo $request_row['photo']; ?>" height="200" width="200" style="cursor: pointer;" data-toggle="modal" data-target="#show" alt="Requirements Photo"><hr>
+                                                                        <?php
+                                                                                
+                                                                           }
+                                                                        
+                                                                        ?>
                                                                     </center>
                                                                 </div><!-- /.modal-body -->
                                                             </div><!-- /.modal-content -->
@@ -118,6 +129,7 @@
                                                 </td>
                                                 <td><?= $vehicle_row['vehicle_name']; ?></td>
                                                 <td><?= date('F j, Y - l - h:i a', strtotime($rent_row['booking_date'])); ?></td>
+                                                <td><?= $rent_row['rent_days']; ?></td>
                                                 <td><?= date('F d, Y', strtotime($rent_row['pick_up_date'])); ?></td>
                                                 <td><?= date('F d, Y', strtotime($rent_row['return_date'])); ?></td>
                                                 <td><?= $rent_row['mode_of_payment']; ?></td>
@@ -156,7 +168,15 @@
                                                                                 <div class="col-lg-12">
                                                                                     <div class="form-group">
                                                                                         <label class="float-left">Amount</label>
-                                                                                        <input type="number" name="amount" class="form-control">
+                                                                                        <input type="number" name="amount" class="form-control" required>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-lg-12">
+                                                                                    <div class="form-group">
+                                                                                        <label class="float-left">OR No.</label>
+                                                                                        <input type="number" name="or_no" class="form-control" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==4) return false;" required>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -164,6 +184,7 @@
                                                                             <input type="hidden" value="<?= $rent_row['id']; ?>" name="booking_id">
                                                                             <input type="hidden" value="<?= $rent_row['customer_id']; ?>" name="customer_id">
                                                                             <input type="hidden" value="<?= $rent_row['total_amount']; ?>" name="total_amount">
+                                                                            <input type="hidden" value="<?= $rent_row['vehicle_id']; ?>" name="vehicle_id">
 
                                                                         </div>
                                                                         <div class="modal-footer justify-content-between">
@@ -222,7 +243,7 @@
                                                         $status = '<span class="badge badge-danger">Cancelled</span>';
                                                     }
                                             ?>
-                                            <tr>
+                                            <tr class="changeStatus" data-id="<?php echo $maint_row['id']; ?>">
                                                 <td class="no-display"><?= $rent_row['id']; ?></td>
                                                 <td><?= $rent_row['booking_number']; ?></td>
                                                 <td><?= ucwords($customer_row['firstname'].' '.$customer_row['lastname']); ?></td>
@@ -233,9 +254,9 @@
                                                 <td><?= $rent_row['mode_of_payment']; ?></td>
                                                 <td><?= $status; ?></td>
                                                 <td>
-                                                
+                                                    <button class="btn btn-primary btn-xs view-booking" data-tooltip="tooltip" title="Click to View" data-id="<?php echo $rent_row['id']; ?>"><i class="fas fa-eye"></i></button>
                                                     <?php if($rent_row['rent_status'] == 0 AND $rent_row['mode_of_payment'] == 'GCash') {?>
-                                                        <button class="btn btn-primary btn-xs view-booking" data-tooltip="tooltip" title="Click to View" data-id="<?php echo $rent_row['id']; ?>"><i class="fas fa-eye"></i></button>
+                                                        
                                                     <?php } ?>
 
                                                     <?php if($rent_row['rent_status'] == 0 AND $rent_row['mode_of_payment'] == 'Cash On Pickup') {?>
@@ -266,7 +287,7 @@
                                                                                 <div class="col-lg-12">
                                                                                     <div class="form-group">
                                                                                         <label class="float-left">Amount</label>
-                                                                                        <input type="number" name="amount" class="form-control">
+                                                                                        <input type="number" name="amount" class="form-control" required>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -274,6 +295,7 @@
                                                                             <input type="hidden" value="<?= $rent_row['id']; ?>" name="booking_id">
                                                                             <input type="hidden" value="<?= $rent_row['customer_id']; ?>" name="customer_id">
                                                                             <input type="hidden" value="<?= $rent_row['total_amount']; ?>" name="total_amount">
+                                                                            <input type="hidden" value="<?= $rent_row['vehicle_id']; ?>" name="vehicle_id">
 
                                                                         </div>
                                                                         <div class="modal-footer justify-content-between">
@@ -384,6 +406,7 @@
                                                                             <input type="hidden" value="<?= $rent_row['id']; ?>" name="booking_id">
                                                                             <input type="hidden" value="<?= $rent_row['customer_id']; ?>" name="customer_id">
                                                                             <input type="hidden" value="<?= $rent_row['total_amount']; ?>" name="total_amount">
+                                                                            <input type="hidden" value="<?= $rent_row['vehicle_id']; ?>" name="vehicle_id">
 
                                                                         </div>
                                                                         <div class="modal-footer justify-content-between">
@@ -497,6 +520,46 @@
                 }
             })
         });
+        
+    //     $(document).on('click', '.changeStatus', function() {
+    // 		var id = $(this).attr('data-id');
+    // 		swal({
+    // 			title: "Are you sure you want to delete this Vehicle Maintainability?",
+    // 			text: "Vehicle related to this will be deleted as well. \n PROCEED WITH CAUTION!!!",
+    // 			icon: "info",
+    // 			buttons: {
+    // 				cancel: "Cancel",
+    // 				confirm: "Confirm"
+    // 			}
+    // 		}).then(function(event) {
+    // 			if (event == true) {
+    // 				$.ajax({
+    // 					url: "../includes/vehicle-mainti-delete.php",
+    // 					method: "POST",
+    // 					dataType: "TEXT",
+    // 					data: {
+    // 						id: id
+    // 					}, success: function(data) {
+    // 						console.log(data);
+    // 						if (data === "Deleted") {
+    // 							swal({
+    // 								title: "Vehicle Maintainability has been deleted!",
+    // 								text: "You can't recover this deleted vehicle!",
+    // 								icon: "info"
+    // 							}).then(function() {
+    // 								location.reload();
+    // 							});
+    // 						} else {
+    // 							swal({
+    // 								title: "Failed to delete this Vehicle Maintainability!",
+    // 								icon: "info"
+    // 							});
+    // 						}
+    // 					}
+    // 				})
+    // 			}
+    // 		});
+    // 	});
 
     });
 </script>

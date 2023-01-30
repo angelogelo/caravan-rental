@@ -155,7 +155,7 @@
                                     <li class="list-group-item">
                                         <b>Registration Expiry</b>
                                         <span class="float-right">
-                                            <?= $vehicle_row['registration_expiry']; ?>
+                                            <?= date('M d, Y', strtotime($vehicle_row['registration_expiry'])); ?>
                                         </span>
                                     </li>
                                     <li class="list-group-item">

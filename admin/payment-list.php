@@ -32,7 +32,7 @@
                     <div class="card-header border-bottom-0">
                         <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Confirm</a>
+                                <a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Confirmed</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Pending</a>
@@ -50,7 +50,7 @@
                                     <table id="confirmTable" class="table table-condensed table-hover table-sm text-sm">
                                         <thead>
                                             <th class="no-display">#</th>
-                                            <th>Transcation #</th>
+                                            <th>Reference #</th>
                                             <th>Booking #</th>
                                             <th>Customer Name</th>
                                             <th>Payment Type</th>
@@ -180,7 +180,7 @@
                                 <table id="pendingTable" class="table table-condensed table-hover table-sm text-sm">
                                         <thead>
                                             <th class="no-display">#</th>
-                                            <th>Transcation #</th>
+                                            <th>Reference #</th>
                                             <th>Booking #</th>
                                             <th>Customer Name</th>
                                             <th>Payment Type</th>
@@ -273,15 +273,19 @@
                                                                                             <th>Payment Type</th>
                                                                                             <td><?= $payment_row['payment_type']; ?></td>
                                                                                         </tr>
+                                                                                        <tr>
+                                                                                            <th>Reference No.</th>
+                                                                                            <td><?= $payment_row['transaction_no']; ?></td>
+                                                                                        </tr>
                                                                                     </table>
                                                                                 </div>
                                                                             </div>
                                                                             
                                                                             
                                                                             <input type="hidden" value="<?= $payment_row['payment_type']; ?>" name="payment_type">
+                                                                            <input type="hidden" value="<?= $payment_row['transaction_no']; ?>" name="transaction_no">
                                                                             <input type="hidden" value="<?= $balance; ?>" name="balance">
                                                                             <input type="hidden" value="<?= $payment_row['booking_id']; ?>" name="booking_id">
-                                                                            <input type="hidden" value="<?= $payment_row['transaction_no']; ?>" name="transaction_no">
                                                                             <input type="hidden" value="<?= $payment_row['id']; ?>" name="payment_id">
                                                                             <input type="hidden" value="<?= $payment_row['amount']; ?>" name="amount">
                                                                             <input type="hidden" value="<?= $payment_row['customer_id']; ?>" name="customer_id">
@@ -310,7 +314,7 @@
                                 <table id="declinedTable" class="table table-condensed table-hover table-sm text-sm">
                                         <thead>
                                             <th class="no-display">#</th>
-                                            <th>Transcation #</th>
+                                            <th>Reference #</th>
                                             <th>Booking #</th>
                                             <th>Customer Name</th>
                                             <th>Payment Type</th>

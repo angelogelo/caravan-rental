@@ -15,7 +15,7 @@
     
     if($update === TRUE){
 
-        $update_transaction_on_rents = $connection->query("UPDATE tbl_payment SET status = 1, confirmation_date = '$timeNow' WHERE id = '$payment_id'");
+        $update_transaction_on_rents = $connection->query("UPDATE tbl_payment SET status = 1, confirmation_date = '$timeNow', transaction_no = '$transaction_no' WHERE id = '$payment_id'");
 
         include '../functions/send-email.php';
 
@@ -28,7 +28,7 @@
 		$to = $email;
 		$subject = 'Payment Confirmation';
 
-        if ($payment_type == 'Initial Payment'){
+        if ($payment_type = 'Initial Payment'){
             $body = 'Hi, '.ucwords($name).'!<br><br>
             Your reservation to Caravan is now Confirmed. Your balance is Php '.$balance.'. <br>Please pay your remaining balance in cash, thank you and have a nice day!
             <br><br><br><br><br>

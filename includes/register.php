@@ -1,7 +1,7 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] =='POST'){
-
+    
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $contact_no = $_POST['contact_no'];
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] =='POST'){
 
     include 'connection.php';
     
-    $dbc = mysqli_connect('localhost', 'u315516982_caravan_rental', 'Vt9:iESO|sf', 'u315516982_caravan_rental') or die('Error connecting to MySQL server');
+    $dbc = mysqli_connect('localhost', 'u847377087_caravan_rental', '9*cq3>X64J:x', 'u847377087_caravan_rental') or die('Error connecting to MySQL server');
     $check=mysqli_query($dbc,"select * from user where email='$email' or contact_no='$contact_no'");
     $checkrows=mysqli_num_rows($check);
     

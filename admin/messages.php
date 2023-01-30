@@ -44,6 +44,8 @@
                                         $customers = $connection->query("SELECT * FROM user WHERE id='$customer_id'");
                                         $customersRow = $customers->fetch_array();
 
+                                        $count = $connection->query("SELECT * FROM chats WHERE sender='$customer_id'");
+
                                         if ($active == 1) {
                                             $activeCustomer = $customer_id;
                                             $activeName = $customersRow['firstname']." ".$customersRow['lastname'];
@@ -53,7 +55,7 @@
                                         }
 
                                         ?>
-                                            <a class="list-group-item list-group-item-action fetchChat <?php echo ($active == 1) ? "active" : ""; ?>" id="messages-list" data-customer-id="<?php echo $chatsRow['customer_id']; ?>" data-active-name="<?php echo ($active == 1) ? $activeName: $notactiveName; ?>" data-toggle="list" href="#messages" role="tab" aria-controls="home"><?php echo $customersRow['firstname']." ".$customersRow['lastname']; ?></a>
+                                            <a class="list-group-item list-group-item-action fetchChat <?php echo ($active == 0) ? "active" : ""; ?>" id="messages-list" data-customer-id="<?php echo $chatsRow['customer_id']; ?>" data-active-name="<?php echo ($active == 1) ? $activeName: $notactiveName; ?>" data-toggle="list" href="#messages" role="tab" aria-controls="home"><?php echo $customersRow['firstname']." ".$customersRow['lastname']; ?> <span class="badge badge-warning"><?= $count->num_rows; ?></span> </a>
                                         <?php
 
                                         $active++;
@@ -248,4 +250,18 @@
 			}
 		})
 	});
+
+    setInterval(function() {
+        $.ajax({
+            url: "../includes/notifCount.php",
+            method: "POST",
+            dataType: "TEXT",
+            data: {
+            sender: sender
+            },
+            success: function(data) {
+            $('#notifCount').text(data)
+            }
+        });
+    }, 1500);
 </script>
